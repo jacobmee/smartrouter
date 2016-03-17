@@ -1,4 +1,5 @@
 # Smart Router Project
+#
 # This project is used to build an OPENWRT router so to:
 # 1. Able to Smart VPN based on the target websites
 #	1.1 AutoVPN
@@ -11,7 +12,7 @@
 ############################################
 #	TPLINK-WDR4310
 ############################################
-# Author:	Jacob.Mee
+# Author:	Jacob Mee
 # Email:	jacob@mitang.me
 # Date:		March 17th, 2016
 ############################################
