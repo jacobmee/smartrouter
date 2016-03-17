@@ -84,6 +84,7 @@ Mount the disk for xunlei
 Install NFS: opkg install kmod-fs-nfs kmod-fs-nfs-common nfs-utils
 mkdir /mnt/downloads
 mount -t nfs 192.168.0.200:/volume1/downloads /mnt/downloads -o nolock
-Install xunlei package
+
+# Install xunlei package
 chmod 777 portal
 ./portal
