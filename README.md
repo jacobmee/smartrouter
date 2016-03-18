@@ -71,7 +71,7 @@ echo "0">/sys/devices/virtual/net/br-lan/bridge/multicast_snooping
 dd if=/dev/mtd5 of=/media/private/firmware.bin
 
 # Image builder
-make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp vsftpd openssh-sftp-server curl" FILES=files/
+make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp vsftpd openssh-sftp-server curl kmod-fs-nfs kmod-fs-nfs-common nfs-utils" FILES=files/
 
 # Install NFS
 Opkg install kmod-fs-nfs kmod-fs-nfs-common nfs-utils
