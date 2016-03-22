@@ -12,8 +12,8 @@ config wifi-device 'radio0'
 	option noscan '1'
 	option country 'US'
 	option htmode 'HT40-'
-	option channel '6'
 	option txpower '27'
+	option channel '11'
 
 config wifi-iface
 	option device 'radio0'
