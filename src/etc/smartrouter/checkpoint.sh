@@ -4,9 +4,10 @@ ping=`ping -c 3 www.twitter.com | grep 'received'  | awk -F',' '{print$2}' | awk
 min=`date | awk '{print$4}' | awk -F ':' '{print$2}'`
 PID_F=`pgrep -f "vpnc /etc/vpnc/default.conf"`
 
+# Use this flag to indicate the VPN status 
 ENABLED_VPN=`sed -n 1p "/etc/smartrouter/ENABLED_VPN"`
 
-# ==== See VPNC is already started, and work properly ====
+# See VPNC is already started, and work properly
 if [ $PID_F ] && [ $PID_F -gt 0 ] && [ $ping -eq 3 ]
 then
 	if [ $min -lt 5 ]
@@ -19,7 +20,7 @@ then
 	logger -s "Access Twitter successfully, but Ping:("$ping") is low; VPNC PID:#("$PID_F"),#("$ENABLED_VPN")"
 else
 
-	# ==================== Restart the VPNC ====================================
+	# Restart the VPNC
 	if [ $PID_F ] && [ $PID_F -gt 0 ]
 	then
 		printout=`date`" +++++ VPNC alives, and killing #("$PID_F"),#("$ENABLED_VPN") right now. +++++"
@@ -46,6 +47,7 @@ else
 	let ENABLED_VPN=$ENABLED_VPN+1  # Set VPN count one more
 	echo $ENABLED_VPN>/etc/smartrouter/ENABLED_VPN
 		
+	# Start VPNC
 	vpnc /etc/vpnc/default.conf
 	
 	# To add google DNS
@@ -54,15 +56,18 @@ else
         # uPNP bug fix for WIFI
         echo "0">/sys/devices/virtual/net/br-lan/bridge/multicast_snooping
         
-   	# ==================== Restart DNSMASQ ====================================
+   	# Restart DNSMASQ
+	# The reason why it needs to add the google DNS before DNSMASQ is because
+	# Maybe DNS is incorrect, so the adresses are resolved will lead to wrong address.
         /etc/init.d/dnsmasq restart
         logger -s " >>>>> DNSMASQ REFRESHED <<<<< "
 	
 	PID_F=`pgrep -f "vpnc /etc/vpnc/default.conf"`
 	
-	if [ $PID_F ] && [ $PID_F -gt 0 ] # ===== IF Restart VPNC successful ==========
+	# If restart VPNC successful
+	if [ $PID_F ] && [ $PID_F -gt 0 ]
 	then
-		# ==================== TEST BAIDU & TWITTER====================================
+		# Te Baidu & Twitter
 		pingb=`ping -c 3 www.baidu.com | grep 'received'  | awk -F',' '{print$2}' | awk '{print$1}'`
 		pingt=`ping -c 3 www.twitter.com | grep 'received'  | awk -F',' '{print$2}' | awk '{print$1}'`
 		if [ $pingt -gt 0 ] && [ $pingb -gt 0 ]
@@ -85,10 +90,11 @@ else
 			cat /etc/smartrouter/mails/rebooted.mail | msmtp -a default admin@mitang.me
 			reboot
 		fi
-	else 	# =======  VPNC CANN'T STARTED, NEED TO LOOK AT IT MANUALLY ===========
+	else 	# VPNC can't be started, please check manually
 		printout=`date`": Couldn't connect VPNC,#("$ENABLED_VPN") please check the server."
 		logger -s $printout
-		# cat /etc/smartrouter/mails/alert.mail | msmtp -a default admin@mitang.me
+		cat /etc/smartrouter/mails/alert.mail | msmtp -a default admin@mitang.me
 		echo $printout >> /etc/smartrouter/reconnect.log
 	fi
 fi
+
