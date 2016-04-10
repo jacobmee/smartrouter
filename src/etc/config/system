@@ -1,10 +1,10 @@
 
 config system
-	option zonename 'UTC'
-	option timezone 'GMT0'
 	option conloglevel '6'
 	option cronloglevel '8'
 	option hostname 'MiTang.Router'
+	option zonename 'Asia/Shanghai'
+	option timezone 'CST-8'
 
 config timeserver 'ntp'
 	list server '0.openwrt.pool.ntp.org'

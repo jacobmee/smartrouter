@@ -25,7 +25,7 @@ make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english 
 echo "# Copy the target file into this Bin files"
 cd $DEST
 mkdir bin
-cp $BUILD_DEST/bin/ar71xx/*4300*squashfs* bin/
+cp $BUILD_DEST/bin/ar71xx/*4310*squashfs* bin/
 
 echo "# Clean files"
 rm -rf $BUILD_DEST/files
