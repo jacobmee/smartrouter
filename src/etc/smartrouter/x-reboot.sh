@@ -1,2 +1,1 @@
-/xunlei/portal -s
 reboot
