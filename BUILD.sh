@@ -19,11 +19,13 @@ echo "# Update packages"
 cp -r packages/* $BUILD_DEST/packages/
 
 echo "# Run the ImageBuilder"
+
+# Build the image file
+# It supports minimal set of openwrt with VPNC, SFTP and NFS included.
+# With 4M spaced needed.
+
 cd $BUILD_DEST
 make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp kmod-fs-nfs kmod-fs-nfs-common nfs-utils vsftpd openssh-sftp-server" FILES=files/
-
-# Option #1. Baidu Pan
-# kmod-nls-utf8 python python-curl SyncY-Python-luci
 
 echo "# Copy the target file into this Bin files"
 cd $DEST
