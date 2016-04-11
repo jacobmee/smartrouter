@@ -20,8 +20,11 @@ cp -r packages/* $BUILD_DEST/packages/
 
 echo "# Run the ImageBuilder"
 cd $BUILD_DEST
-make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp kmod-fs-nfs kmod-fs-nfs-common nfs-utils vsftpd openssh-sftp-server aria2 luci-app-aria2" FILES=files/
 
+# This version has included the Aria2. 
+# The issue about Aria2 is that you'll need to open ports in the router to let external users to access the downloading service: 6800.
+# Please be careful if you want to do that.
+make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp kmod-fs-nfs kmod-fs-nfs-common nfs-utils vsftpd openssh-sftp-server aria2 luci-app-aria2" FILES=files/
 
 echo "# Copy the target file into this Bin files"
 cd $DEST
