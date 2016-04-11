@@ -59,4 +59,3 @@ Details please refer the BUILD.sh
 ```shell
 make image PROFILE=TLWDR4300 PACKAGES="..." FILES=files/
 ```
->>>>>>> master
