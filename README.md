@@ -55,4 +55,7 @@ Opkg install kmod-fs-nfs kmod-fs-nfs-common nfs-utils
 ```
 
 ## Fireware building
-
+Details please refer the BUILD.sh
+```shell
+make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp kmod-fs-nfs kmod-fs-nfs-common nfs-utils vsftpd openssh-sftp-server" FILES=files/
+```
