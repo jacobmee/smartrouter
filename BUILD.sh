@@ -24,9 +24,6 @@ make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english 
 
 # Option #1. Baidu Pan
 # kmod-nls-utf8 python python-curl SyncY-Python-luci
-# Option #2. Aria2
-# aria2 luci-app-aria2
-# End
 
 echo "# Copy the target file into this Bin files"
 cd $DEST
