@@ -29,9 +29,18 @@ else
 		kill $PID_F
 		sleep 5
 	else
-		printout=`date`": VPNC is gone,#("$ENABLED_VPN")."                                               
-	        logger -s $printout                                                                               
-	        echo $printout >> /etc/smartrouter/reconnect.log  
+		if [ $ENABLED_VPN -eq -1 ]
+		then
+			# It means the router just restarted
+			printout=`date`": The router is rebooted, #("$ENABLED_VPN")."                                               
+	        	logger -s $printout                                                                               
+	        	echo $printout >> /etc/smartrouter/reconnect.log
+	        else
+	        	# It means the VPNC for some reason is just gone.
+	        	printout=`date`": VPNC is not started, #("$ENABLED_VPN")."
+	                logger -s $printout                                   
+	                echo $printout >> /etc/smartrouter/reconnect.log
+	        fi  
 	fi
 	
 	# if it was good last time
