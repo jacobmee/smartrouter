@@ -8,11 +8,9 @@ This project is used to build an OPENWRT router so to:
 The build program currently is based on
 **TPLINK-WDR4310**
 
-**Author**:	Jacob Mee
-
-**Email**:	jacob@mitang.me
-
-**Date**:		March 17th, 2016
+* **Author**:	Jacob Mee
+* **Email**:	jacob@mitang.me
+* **Date**:		March 17th, 2016
 
 ## Install ftp (optional):
 opkg update
