@@ -1,8 +1,8 @@
 # This build file is to setting up the files folder under ImageBuilder
 
 # Define the destination
-BUILD_DEST=~/Workspace/ImageBuilder
-DEST=$(pwd)
+BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-12.09-ar71xx-generic.Linux-x86_64
+DEST=~/Workspace/git/repos/smartrouter
 
 echo "# Clean and setup destination: "
 echo "# ImageBuilder: "$BUILD_DEST
@@ -13,10 +13,10 @@ rm -rf $DEST/bin
 
 echo "# Copy neccessary files"
 mkdir $BUILD_DEST/files
-cp -r src/* $BUILD_DEST/files/
+cp -r $DEST/src/* $BUILD_DEST/files/
 
 echo "# Update packages"
-cp -r packages/* $BUILD_DEST/packages/
+cp -r $DEST/packages/* $BUILD_DEST/packages/
 
 echo "# Run the ImageBuilder"
 
@@ -34,7 +34,7 @@ cp $BUILD_DEST/bin/ar71xx/*4310*squashfs* bin/
 
 echo "# Clean files"
 rm -rf $BUILD_DEST/files
-#rm -rf $BUILD_DEST/bin
+rm -rf $BUILD_DEST/bin
 
 echo "##############################################"
 echo "#    DONE, Please check the BIN folder!      #"
