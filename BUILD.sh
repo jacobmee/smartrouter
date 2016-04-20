@@ -26,7 +26,7 @@ echo "# Run the ImageBuilder"
 # With 4M spaced needed.
 
 cd $BUILD_DEST
-make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-theme-openwrt ip msmtp vsftpd openssh-sftp-server" FILES=files/
+make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-theme-openwrt ip wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl dnsmasq-full shadowsocks-libev -dnsmasq" FILES=files/
 
 echo "# Copy the target file into this Bin files"
 cd $DEST

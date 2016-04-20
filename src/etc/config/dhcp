@@ -18,6 +18,8 @@ config dhcp 'lan'
 	option leasetime '12h'
 	option limit '50'
 	option start '10'
+	option dhcpv6 'server'
+	option ra 'server'
 
 config dhcp 'wan'
 	option interface 'wan'
@@ -30,4 +32,9 @@ config host
 config host
 	option mac '00:11:32:30:09:fb'
 	option ip '192.168.0.200'
+
+config odhcpd 'odhcpd'
+	option maindhcp '0'
+	option leasefile '/tmp/hosts/odhcpd'
+	option leasetrigger '/usr/sbin/odhcpd-update'
 

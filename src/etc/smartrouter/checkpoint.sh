@@ -1,66 +1,60 @@
 #!/bin/bash
 
-ping=`ping -c 3 www.twitter.com | grep 'received'  | awk -F',' '{print$2}' | awk '{print$1}'`
-min=`date | awk '{print$4}' | awk -F ':' '{print$2}'`
-PID_F=`pgrep -f "vpnc /etc/vpnc/default.conf"`
+LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
+wget --spider --quiet --tries=1 --timeout=3 www.google.com
 
-# Use this flag to indicate the VPN status 
-ENABLED_VPN=`sed -n 1p "/etc/smartrouter/ENABLED_VPN"`
+PID_F=`pgrep -f "ss-tunnel"`
 
-# See VPNC is already started, and work properly
-if [ $PID_F ] && [ $PID_F -gt 0 ] && [ $ping -eq 3 ]
+# Use this flag to indicate the VPN status
+ENABLED_SS=`sed -n 1p "/etc/smartrouter/ENABLED_SS"`
+
+# See Shadowsocks is already started, and work properly
+if [ $PID_F ] && [ $PID_F -gt 0 ] && [ "$?" == "0" ]
 then
-	if [ $min -lt 5 ]
-	then
-		printout="Access Twitter successfully. VPNC ID: ("$PID_F"),#("$ENABLED_VPN")"
-		logger -s $printout
-	fi
-elif [ $PID_F ] && [ $PID_F -gt 0 ] && [ $ping -gt 0 ]
-then
-	logger -s "Access Twitter successfully, but Ping:("$ping") is low; VPNC PID:#("$PID_F"),#("$ENABLED_VPN")"
+	printout="Access Twitter successfully. Shadowsocks ID: ("$PID_F"),#("$ENABLED_SS")"
+	logger -s $printout
+
 else
 
-	# Restart the VPNC
+	# Restart the Shadowsocks
 	if [ $PID_F ] && [ $PID_F -gt 0 ]
 	then
-		printout=`date`" +++++ VPNC alives, and killing #("$PID_F"),#("$ENABLED_VPN") right now. +++++"
+		printout="["$LOGTIME"]  +++++ Shadowsocks alives, and killing #("$PID_F"),#("$ENABLED_SS") right now. +++++"
 		logger -s $printout
 		echo $printout >> /etc/smartrouter/reconnect.log
-		kill $PID_F
+		/etc/init.d/shadowsock stop
 		sleep 5
 	else
-		if [ $ENABLED_VPN -eq -1 ]
+		if [ $ENABLED_SS -eq -1 ]
 		then
 			# It means the router just restarted
-			printout=`date`": The router is rebooted, #("$ENABLED_VPN")."                                               
-	        	logger -s $printout                                                                               
+			printout="["$LOGTIME"]: The router is rebooted, #("$ENABLED_SS")."
+	        	logger -s $printout
 	        	echo $printout >> /etc/smartrouter/reconnect.log
 	        else
-	        	# It means the VPNC for some reason is just gone.
-	        	printout=`date`": VPNC is not started, #("$ENABLED_VPN")."
-	                logger -s $printout                                   
+	        	# It means the Shadowsocks for some reason is just gone.
+	        	printout="["$LOGTIME"]: Shadowsocks is not started, #("$ENABLED_SS")."
+	                logger -s $printout
 	                echo $printout >> /etc/smartrouter/reconnect.log
 	        fi  
 	fi
 	
 	# if it was good last time
-	if [ $ENABLED_VPN -eq 0 ]                                                                                                                           
-        then    
-        	printout=`date`": VPNC was good last time,#("$ENABLED_VPN")."                                               
-        	logger -s $printout                                                                               
-        	echo $printout >> /etc/smartrouter/reconnect.log 
-        	                                
+	if [ $ENABLED_SS -eq 0 ]
+        then
+        	printout="["$LOGTIME"]: Shadowsocks was good last time,#("$ENABLED_SS")." 
+        	logger -s $printout
+        	echo $printout >> /etc/smartrouter/reconnect.log
+
         	cat /etc/smartrouter/mails/disabled.mail | msmtp -a default admin@mitang.me
-        fi  
-                                                        
-	let ENABLED_VPN=$ENABLED_VPN+1  # Set VPN count one more
-	echo $ENABLED_VPN>/etc/smartrouter/ENABLED_VPN
-		
-	# Start VPNC
-	vpnc /etc/vpnc/default.conf
-	
-	# To add google DNS
-	route add 8.8.8.8 dev tun0
+        fi
+        
+	let ENABLED_SS=$ENABLED_SS+1  # Set Shadowsocks count one more
+	echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
+
+	# Start Shadowsocks
+	/etc/init.d/shadowsock start
+
 
         # uPNP bug fix for WIFI
         echo "0">/sys/devices/virtual/net/br-lan/bridge/multicast_snooping
@@ -71,36 +65,43 @@ else
         /etc/init.d/dnsmasq restart
         logger -s " >>>>> DNSMASQ REFRESHED <<<<< "
 	
-	PID_F=`pgrep -f "vpnc /etc/vpnc/default.conf"`
+	PID_F=`pgrep -f "ss-tunnel"`
 	
-	# If restart VPNC successful
+	# If restart Shadowsocks successful
 	if [ $PID_F ] && [ $PID_F -gt 0 ]
 	then
 		# Te Baidu & Twitter
-		pingb=`ping -c 3 www.baidu.com | grep 'received'  | awk -F',' '{print$2}' | awk '{print$1}'`
-		pingt=`ping -c 3 www.twitter.com | grep 'received'  | awk -F',' '{print$2}' | awk '{print$1}'`
-		if [ $pingt -gt 0 ] && [ $pingb -gt 0 ]
+		wget --spider --quiet  --tries=1 --timeout=3 www.twitter.com
+		if [ "$?" == "0" ]
 		then
-			printout=`date`": VPNC CONNECTED; #("$PID_F"),#("$ENABLED_VPN")"
+			printout="["$LOGTIME"]: Shadowsocks CONNECTED; #("$PID_F"),#("$ENABLED_SS")"
 			logger -s $printout
 			echo $printout >> /etc/smartrouter/reconnect.log
 			
-			if [ $ENABLED_VPN -gt 0 ]                                                                                                                              
-                        then             
-                        	cat /etc/smartrouter/mails/enabled.mail | msmtp -a default admin@mitang.me                                           
-                        fi                                                                                                                                                  
+			if [ $ENABLED_SS -gt 0 ]  
+                        then 
+                        	cat /etc/smartrouter/mails/enabled.mail | msmtp -a default admin@mitang.me 
+                        fi
                         
-                        let ENABLED_VPN=0 # Reset VPN count
-			echo $ENABLED_VPN>/etc/smartrouter/ENABLED_VPN                                                                                                 		
+                        let ENABLED_SS=0 # Reset VPN count
+			echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
 		else
-			printout=`date`":Problems after VPNC restarted; Twitter:("$pingt"), Baidu:("$pingb"). Rebooting... & VPNC PID:#("$PID_F"),#("$ENABLED_VPN")"
-			logger -s $printout
-			echo $printout >> /etc/smartrouter/reconnect.log
-			cat /etc/smartrouter/mails/rebooted.mail | msmtp -a default admin@mitang.me
-			reboot
+			wget --spider --quiet --tries=1 --timeout=3 www.baidu.com
+			if [ "$?" == "0" ]
+			then
+				printout="["$LOGTIME"]:Problems still exsits after Shadowsocks restarted; & Shadowsocks PID:#("$PID_F"),#("$ENABLED_SS")"
+				logger -s $printout
+				echo $printout >> /etc/smartrouter/reconnect.log
+			else
+				printout="["$LOGTIME"]:Network issue after Shadowsocks restarted. Rebooting... & Shadowsocks PID:#("$PID_F"),#("$ENABLED_SS")"
+				logger -s $printout
+				echo $printout >> /etc/smartrouter/reconnect.log
+				cat /etc/smartrouter/mails/rebooted.mail | msmtp -a default admin@mitang.me
+				reboot
+			fi
 		fi
-	else 	# VPNC can't be started, please check manually
-		printout=`date`": Couldn't connect VPNC,#("$ENABLED_VPN") please check the server."
+	else 	# Shadowsocks can't be started, please check manually
+		printout="["$LOGTIME"]: Couldn't connect Shadowsocks,#("$ENABLED_SS") please check the server."
 		logger -s $printout
 		cat /etc/smartrouter/mails/alert.mail | msmtp -a default admin@mitang.me
 		echo $printout >> /etc/smartrouter/reconnect.log

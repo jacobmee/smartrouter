@@ -1,8 +1,8 @@
 
 config core 'main'
 	option lang 'auto'
-	option mediaurlbase '/luci-static/openwrt.org'
 	option resourcebase '/luci-static/resources'
+	option mediaurlbase '/luci-static/openwrt.org'
 
 config extern 'flash_keep'
 	option uci '/etc/config/'
@@ -25,4 +25,5 @@ config internal 'ccache'
 
 config internal 'themes'
 	option OpenWrt '/luci-static/openwrt.org'
+	option Bootstrap '/luci-static/bootstrap'
 
