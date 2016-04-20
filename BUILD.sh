@@ -23,7 +23,7 @@ echo "# Run the ImageBuilder"
 
 # Build the image file
 # It supports minimal set of openwrt with Shadowsocks, SFTP and NFS included.
-# With 4M spaced needed.
+# With 5M spaced needed.
 
 cd $BUILD_DEST
 make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-theme-openwrt ip wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl dnsmasq-full shadowsocks-libev -dnsmasq" FILES=files/
