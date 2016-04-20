@@ -4,7 +4,7 @@ This project is used to build an OPENWRT router so to:
 * A download machines
 *	Connect to a NFS driver
 
-The build program is for **TPLINK-WDR4310** based on **Openwrt AA-12.09**
+The build program is for **TPLINK-WDR4310** based on **Openwrt CC-15.05.1**
 
 * **Author**:	Jacob Mee
 * **Email**:	jacob@mitang.me
