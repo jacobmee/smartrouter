@@ -3,6 +3,7 @@
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 wget --spider --quiet --tries=1 --timeout=3 www.google.com
 
+# See if the Shadowsocks alive
 PID_F=`pgrep -f "ss-tunnel"`
 
 # Use this flag to indicate the VPN status
