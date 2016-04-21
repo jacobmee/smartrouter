@@ -25,7 +25,7 @@ echo "# Run the ImageBuilder"
 # With 4M spaced needed.
 
 cd $BUILD_DEST
-make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp kmod-fs-nfs kmod-fs-nfs-common nfs-utils vsftpd openssh-sftp-server" FILES=files/
+make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp vsftpd openssh-sftp-server" FILES=files/
 
 echo "# Copy the target file into this Bin files"
 cd $DEST

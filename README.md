@@ -1,14 +1,12 @@
 # Smart Router Project
 This project is used to build an OPENWRT router so to:
 * Smart VPN based on the target websites by AutoVPN with VPNC
-* A download machines
-*	Connect to a NFS driver
 
 The build program is for **TPLINK-WDR4310** based on **Openwrt AA-12.09**
 
 * **Author**:	Jacob Mee
 * **Email**:	jacob@mitang.me
-* **Date**:		March 17th, 2016
+* **Date**:	March 17th, 2016
 
 ## Components guides
 Here is simple guideline to setup the router, and eventually I have built in into a firmware.
