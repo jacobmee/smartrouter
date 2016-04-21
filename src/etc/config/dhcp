@@ -18,8 +18,6 @@ config dhcp 'lan'
 	option leasetime '12h'
 	option limit '50'
 	option start '10'
-	option dhcpv6 'server'
-	option ra 'server'
 
 config dhcp 'wan'
 	option interface 'wan'
