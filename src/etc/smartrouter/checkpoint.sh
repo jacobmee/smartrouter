@@ -11,7 +11,7 @@ ENABLED_SS=`sed -n 1p "/etc/smartrouter/ENABLED_SS"`
 # See Shadowsocks is already started, and work properly
 if [ $PID_F ] && [ $PID_F -gt 0 ] && [ "$?" == "0" ]
 then
-	printout="Access Twitter successfully. Shadowsocks ID: ("$PID_F"),#("$ENABLED_SS")"
+	printout="Connnected successfully. Shadowsocks ID: ("$PID_F"),#("$ENABLED_SS")"
 	logger -s $printout
 
 else
