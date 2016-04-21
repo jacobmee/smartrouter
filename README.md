@@ -1,5 +1,5 @@
 # Smart Router Project
-This project is used to build an OPENWRT router for **TPLINK-WDR4310** based on **Openwrt AA-12.09**
+This project is used to build an OPENWRT router for **TPLINK-WDR4310** based on **Openwrt CC-15.05.1**
 
 * **Author**:	Jacob Mee
 * **Email**:	jacob@mitang.me
