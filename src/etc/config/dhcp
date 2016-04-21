@@ -31,3 +31,8 @@ config host
 	option mac '00:11:32:30:09:fb'
 	option ip '192.168.0.200'
 
+config odhcpd 'odhcpd'
+	option maindhcp '0'
+	option leasefile '/tmp/hosts/odhcpd'
+	option leasetrigger '/usr/sbin/odhcpd-update'
+

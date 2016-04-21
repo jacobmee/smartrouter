@@ -1,7 +1,7 @@
 # This build file is to setting up the files folder under ImageBuilder
 
 # Define the destination
-BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-12.09-ar71xx-generic.Linux-x86_64
+BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-15.05.1-ar71xx-generic.Linux-x86_64
 DEST=~/Workspace/git/repos/smartrouter
 
 echo "# Clean and setup destination: "
@@ -21,11 +21,11 @@ cp -r $DEST/packages/* $BUILD_DEST/packages/
 echo "# Run the ImageBuilder"
 
 # Build the image file
-# It supports minimal set of openwrt with VPNC, SFTP and NFS included.
+# It supports minimal set of openwrt with SFTP & MSMTP only.
 # With 4M spaced needed.
 
 cd $BUILD_DEST
-make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-i18n-english luci-lib-ipkg luci-lib-sys luci-proto-core luci-sgi-cgi luci-theme-base luci-theme-openwrt ip vpnc msmtp vsftpd openssh-sftp-server" FILES=files/
+make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-theme-openwrt ip msmtp vsftpd openssh-sftp-server" FILES=files/
 
 echo "# Copy the target file into this Bin files"
 cd $DEST

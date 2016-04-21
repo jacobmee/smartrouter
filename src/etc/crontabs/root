@@ -1,4 +1,0 @@
-0 0 * * 1 rm /etc/smartrouter/reconnect.log
-5 * * * * sh /etc/smartrouter/checkpoint.sh
-*/5 * * * * sh /etc/smartrouter/oray.sh
-0 5 * * * sh /etc/smartrouter/x-reboot.sh
