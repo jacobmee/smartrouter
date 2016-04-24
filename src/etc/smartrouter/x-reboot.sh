@@ -1,3 +1,3 @@
 #!/bin/bash
-sh update.sh
+sh /etc/smartrouter/update.sh
 reboot
