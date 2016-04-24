@@ -26,7 +26,7 @@ then
 
 		return
 	else
-		printout="["$LOGTIME"]  +++++ Shadowsocks alives, and killing #("$PID_F"),#("$ENABLED_SS") right now. +++++"
+		printout="["$LOGTIME"]: Shadowsocks alives, and killing #("$PID_F"),#("$ENABLED_SS")."
 		logger -s $printout
 		echo $printout >> /etc/smartrouter/reconnect.log
 		/etc/init.d/shadowsocks stop
