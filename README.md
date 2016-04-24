@@ -1,7 +1,7 @@
 # Smart Router Project
 
 This project is used to build an OPENWRT router so to:
-* Smart VPN based on the target websites by Shadowsocks with wget heartbeat
+* **Smart Router** based on the target websites by **Shadowsocks** with wget heartbeat
 
 
 The build program is for **TPLINK-WDR4310** based on **Openwrt CC-15.05.1**

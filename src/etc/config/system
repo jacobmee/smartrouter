@@ -7,10 +7,10 @@ config system
 	option conloglevel '6'
 
 config timeserver 'ntp'
-	list server '0.openwrt.pool.ntp.org'
-	list server '1.openwrt.pool.ntp.org'
-	list server '2.openwrt.pool.ntp.org'
-	list server '3.openwrt.pool.ntp.org'
+	list server 'ds.mitang.me'
+	list server 'www.mitang.me'
+	list server '1.us.pool.ntp.org'
+	list server 'time1.google.com'
 
 config led 'led_usb1'
 	option name 'USB1'
