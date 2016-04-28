@@ -38,16 +38,23 @@ then
 			echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
 			print_log "[SHADOWSOCKS]: NEW Connected. #ID: ("$PID_F"),("$ENABLED_SS")" true "enabled.mail"
                	else
-			# Logger every #10 minutes
+			# Logger every #60 minutes
 			LOGMINUTE=$(date +"%M")
-			if [ "$(($LOGMINUTE%10))" == "0" ]
+			if [ "$(($LOGMINUTE%60))" == "0" ]
 			then
-				print_log "[SHADOWSOCKS]: Connnected as usual. #ID: ("$PID_F"),("$ENABLED_SS")"
+				print_log "[SHADOWSOCKS]: Half-hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
 			fi
 		fi
-
+	# If it gives error
 	else
-		print_log "[SHADOWSOCKS]: Alive but returned #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
+		# 4 means "Network Failure"
+		if  [ "$RETURNCODE" == "4" ]
+		then
+			wget --spider --quiet --tries=3 --timeout=3 www.baidu.com
+			print_log "[SHADOWSOCKS]: I'm alive. Baidu gave me #"$?", and Google gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
+		else
+			print_log "[SHADOWSOCKS]: I'm alive. But Google gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
+		fi
 		# /etc/init.d/shadowsocks stop
 	fi
 
