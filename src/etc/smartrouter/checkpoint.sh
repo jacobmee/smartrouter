@@ -42,7 +42,7 @@ then
 			LOGMINUTE=$(date +"%M")
 			if [ "$(($LOGMINUTE%60))" == "0" ]
 			then
-				print_log "[SHADOWSOCKS]: Half-hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
+				print_log "[SHADOWSOCKS]: Hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
 			fi
 		fi
 	# If it gives error
