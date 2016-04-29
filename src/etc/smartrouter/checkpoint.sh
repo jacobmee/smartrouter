@@ -51,16 +51,18 @@ then
 		if  [ "$RETURNCODE" == "4" ]
 		then
 			wget --spider --quiet --tries=3 --timeout=3 www.baidu.com
-			print_log "[SHADOWSOCKS]: I'm alive. Baidu gave me #"$?", and Google gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
+			print_log "[SHADOWSOCKS]: I'm alive. However, Baidu gave me #"$?" & Google gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
 		else
 			print_log "[SHADOWSOCKS]: I'm alive. But Google gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
 		fi
-		# /etc/init.d/shadowsocks stop
 	fi
-
+	
+	# So far looks unessary to restart the shadowsocks
+	# /etc/init.d/shadowsocks stop
 	return 0
+
 else
-	# It means the Shadowsocks for some reason is just gone.
+	# It means the Shadowsocks for some reason is just gone.  It requires restart.
 	print_log "[SHADOWSOCKS]: The service is not started. #("$ENABLED_SS")." true
 fi
 
