@@ -1,7 +1,7 @@
 # This build file is to setting up the files folder under ImageBuilder
 
 # Define the destination
-BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-15.05.1-ar71xx-generic.Linux-x86_64
+BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-15.05.1-mvebu.Linux-x86_64
 
 DEST=~/Workspace/git/repos/smartrouter
 
@@ -26,13 +26,13 @@ echo "# Run the ImageBuilder"
 # With 5M spaced needed.
 
 cd $BUILD_DEST
-make image PROFILE=TLWDR4300 PACKAGES="luci luci-app-firewall luci-theme-openwrt ip wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl dnsmasq-full shadowsocks-libev -dnsmasq" FILES=files/
+make image PROFILE=Shelby PACKAGES="luci luci-app-firewall luci-theme-openwrt ip wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl dnsmasq-full shadowsocks-libev -dnsmasq" FILES=files/
 
 
 echo "# Copy the target file into this Bin files"
 cd $DEST
 mkdir bin
-cp $BUILD_DEST/bin/ar71xx/*4310*squashfs* bin/
+cp $BUILD_DEST/bin/mvebu/**shelby* bin/
 
 echo "# Clean files"
 rm -rf $BUILD_DEST/files

@@ -1,7 +1,0 @@
-# Put your custom commands here that should be executed once
-# the system init finished. By default this file does nothing.
-
-# uPNP bug fix for WIFI
-# echo "0">/sys/devices/virtual/net/br-lan/bridge/multicast_snooping
-
-exit 0
