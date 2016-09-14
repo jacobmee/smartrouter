@@ -35,7 +35,7 @@ mkdir bin
 cp $BUILD_DEST/bin/mvebu/**shelby* bin/
 
 echo "# Clean files"
-rm -rf $BUILD_DEST/files
+rm -rf re$BUILD_DEST/files
 rm -rf $BUILD_DEST/bin
 
 echo "##############################################"
