@@ -2,6 +2,7 @@
 
 # Define the destination
 BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-15.05.1-mvebu.Linux-x86_64
+# OpenWrt-ImageBuilder-mvebu.Linux-x86_64
 
 DEST=~/Workspace/git/repos/smartrouter
 

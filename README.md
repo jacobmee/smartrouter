@@ -5,6 +5,8 @@ This project is used to build an OPENWRT router so to:
 
 
 The build program is for **LINKSYS WRT1900ACS.V2** based on **Openwrt CC-15.05.1**
+It still requires wireless driver update: mwlwifi_10.3.0.18-20160804_mvebu.ipk
+
 
 * **Author**:	Jacob Mee
 * **Email**:	jacob@mitang.me
