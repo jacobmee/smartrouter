@@ -14,7 +14,7 @@ config wifi-iface
 	option mode 'ap'
 	option ssid 'MiTang'
 	option encryption 'psk-mixed'
-	option key 'abc123_+'
+	option key 'abc123_+U'
 
 config wifi-device 'radio1'
 	option type 'mac80211'
