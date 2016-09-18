@@ -3,8 +3,8 @@ config system
 	option hostname 'SmartRouter'
 	option zonename 'America/Los Angeles'
 	option timezone 'PST8PDT,M3.2.0,M11.1.0'
-	option conloglevel '8'
-	option cronloglevel '8'
+	option conloglevel '5'
+	option cronloglevel '9'
 
 config timeserver 'ntp'
 	list server '0.openwrt.pool.ntp.org'
