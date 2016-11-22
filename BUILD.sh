@@ -1,8 +1,8 @@
 # This build file is to setting up the files folder under ImageBuilder
 
 # Define the destination
-BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-15.05.1-mvebu.Linux-x86_64
-# OpenWrt-ImageBuilder-mvebu.Linux-x86_64
+# BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-15.05.1-mvebu.Linux-x86_64
+BUILD_DEST=~/Workspace/Router.LinkSys.WRT1900ACS2/OpenWrt-ImageBuilder-15.05.1-mvebu.Linux-x86_64
 
 DEST=~/Workspace/git/repos/smartrouter
 
@@ -42,4 +42,5 @@ rm -rf $BUILD_DEST/bin
 echo "##############################################"
 echo "#    DONE, Please check the BIN folder!      #"
 echo "##############################################"
+
 
