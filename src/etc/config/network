@@ -21,10 +21,3 @@ config interface 'wan'
 	option ifname 'eth0'
 	option proto 'dhcp'
 
-config interface 'wan6'
-	option ifname 'eth0'
-	option proto 'dhcpv6'
-
-config interface 'wwan'
-	option proto 'dhcp'
-

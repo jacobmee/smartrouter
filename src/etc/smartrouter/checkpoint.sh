@@ -113,8 +113,8 @@ then
 		then
 			print_log "[SHADOWSOCKS]: Problems still exsits after restarting the service. #ID: ("$PID_F"),("$ENABLED_SS")" true
 		else
-			print_log "[SHADOWSOCKS]: Network issue after restarting the service, so rebooting. #ID: ("$PID_F"),("$ENABLED_SS")" true "rebooted.mail"
-			sh /etc/smartrouter/x-reboot.sh
+			print_log "[SHADOWSOCKS]: Network issue after restarting the service, so require reboot?. #ID: ("$PID_F"),("$ENABLED_SS")" true "alert.mail"
+			#sh /etc/smartrouter/x-reboot.sh
 		fi
 	fi
 else 	# Shadowsocks can't be started, please check manually
