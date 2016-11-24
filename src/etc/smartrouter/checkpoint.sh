@@ -44,6 +44,7 @@ then
 			then
 				print_log "[SHADOWSOCKS]: Hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
 			fi
+			echo "Google tests successful."
 		fi
 	# If it gives error
 	else
