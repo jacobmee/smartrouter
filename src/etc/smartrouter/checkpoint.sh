@@ -43,8 +43,9 @@ then
 			if [ "$(($LOGMINUTE%60))" == "0" ]
 			then
 				print_log "[SHADOWSOCKS]: Hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
+			else
+				print_log "Google tests successful." false
 			fi
-			echo "Google tests successful."
 		fi
 	# If it gives error
 	else
@@ -62,15 +63,17 @@ then
 	# /etc/init.d/shadowsocks stop
 	return 0
 
-else
-	# It means the Shadowsocks for some reason is just gone.  It requires restart.
-	print_log "[SHADOWSOCKS]: The service is not started. #("$ENABLED_SS")." true
 fi
 
-# if it was good last time, notify me the SS is disabled.
+
+# It means the Shadowsocks for some reason is just gone.  It requires restart. 
+print_log "[SHADOWSOCKS]: The service is not started. #("$ENABLED_SS")." true
+
+
+# if it was good last time (mostlikely because of openwrt rebooting).
 if [ $ENABLED_SS -eq 0 ]
 then
-        print_log "[SHADOWSOCKS]: The service sas good last time. #("$ENABLED_SS")." true "disabled.mail" 
+        print_log "[SHADOWSOCKS]: The service was good last time. #("$ENABLED_SS")." true
 fi
 
 # Error+1
@@ -121,3 +124,5 @@ then
 else 	# Shadowsocks can't be started, please check manually
 	print_log "[SHADOWSOCKS]:  Couldn't start the service. #("$ENABLED_SS") please check manually." true "alert.mail"
 fi
+
+# End
