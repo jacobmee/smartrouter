@@ -7,15 +7,15 @@ config wifi-device 'radio0'
 	option country 'US'
 	option txpower '23'
 	option channel '60'
+	option log_level '3'
 
 config wifi-iface
 	option device 'radio0'
 	option network 'lan'
 	option mode 'ap'
 	option encryption 'psk-mixed'
+	option key 'abc123_+U'
 	option ssid 'MiTang.Hours'
-	option key 'abc123_+'
-	option hidden '1'
 
 config wifi-device 'radio1'
 	option type 'mac80211'
@@ -26,12 +26,13 @@ config wifi-device 'radio1'
 	option channel '6'
 	option htmode 'HT40'
 	option txpower '30'
+	option log_level '3'
 
 config wifi-iface
 	option device 'radio1'
 	option mode 'ap'
-	option ssid 'MiTang'
 	option encryption 'psk-mixed'
 	option key 'abc123_+U'
 	option network 'lan'
+	option ssid 'MiTang'
 

@@ -153,3 +153,10 @@ config redirect
 	option dest_port '443'
 	option name 'DSM 443'
 
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'tcp udp'
+	option dest_port '202'
+	option name 'Allow SSH - 202'
+
