@@ -43,8 +43,8 @@ then
 			if [ "$(($LOGMINUTE%60))" == "0" ]
 			then
 				print_log "[SHADOWSOCKS]: Hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
-			else
-				print_log "Google tests successful." false
+			#else
+				#print_log "[SHADOWSOCKS]: Checkpoint passed." false
 			fi
 		fi
 	# If it gives error
