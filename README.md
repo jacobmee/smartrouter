@@ -4,7 +4,7 @@ This project is used to build an OPENWRT router so to:
 * **Smart Router** based on the target websites by **Shadowsocks** with wget heartbeat
 
 
-The build program is for **LINKSYS WRT1900ACS.V2** based on **Openwrt CC-15.05.1**.  The current wireless driver is **mwlwifi_3.18.23+10.3.0.17-20160531-1_mvebu**, but it needs to be updated to mwlwifi_10.3.0.18-20160804_mvebu for V2.
+The build program is for **LINKSYS WRT1900ACS.V2** based on **LEDE project released on Nov 26th, 2016**. 
 
 
 * **Author**:	Jacob Mee
@@ -12,8 +12,8 @@ The build program is for **LINKSYS WRT1900ACS.V2** based on **Openwrt CC-15.05.1
 * **Date**:	Sept 10th, 2016
 
 ## Components guides
-* luci luci-app-firewall luci-theme-openwrt 
-* ip 
+
+* luci luci-theme-material 
 * wget msmtp vsftpd openssh-sftp-server 
 * iptables-mod-nat-extra ipset libopenssl 
 * dnsmasq-full -dnsmasq
