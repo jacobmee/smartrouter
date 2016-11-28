@@ -1,4 +1,0 @@
-0 0 * * 1 rm /etc/smartrouter/reconnect.log
-*/3 * * * * sh /etc/smartrouter/checkpoint.sh
-7 5 * * * sh /etc/smartrouter/x-reboot.sh
-*/5 * * * * /sbin/fan_ctrl.sh

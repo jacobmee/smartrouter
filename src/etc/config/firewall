@@ -53,9 +53,8 @@ config rule
 	option name 'Allow-DHCPv6'
 	option src 'wan'
 	option proto 'udp'
-	option src_ip 'fe80::/10'
-	option src_port '547'
-	option dest_ip 'fe80::/10'
+	option src_ip 'fc00::/6'
+	option dest_ip 'fc00::/6'
 	option dest_port '546'
 	option family 'ipv6'
 	option target 'ACCEPT'
@@ -123,6 +122,12 @@ config rule
 	option proto 'udp'
 	option target 'ACCEPT'
 
+config include 'miniupnpd'
+	option type 'script'
+	option path '/usr/share/miniupnpd/firewall.include'
+	option family 'any'
+	option reload '1'
+
 config redirect
 	option target 'DNAT'
 	option src 'wan'
@@ -144,6 +149,7 @@ config redirect
 	option name 'DSM 5001'
 
 config redirect
+	option enabled '1'
 	option target 'DNAT'
 	option src 'wan'
 	option dest 'lan'
@@ -154,9 +160,10 @@ config redirect
 	option name 'DSM 443'
 
 config rule
+	option enabled '1'
 	option target 'ACCEPT'
 	option src 'wan'
 	option proto 'tcp udp'
 	option dest_port '202'
-	option name 'Allow SSH - 202'
+	option name 'Allow-SSH 202'
 

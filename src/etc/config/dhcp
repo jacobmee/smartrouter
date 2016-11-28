@@ -15,6 +15,7 @@ config dnsmasq
 	option localservice '1'
 	list server '8.8.8.8'
 	list server '8.8.4.4'
+	option nonwildcard '0'
 
 config dhcp 'lan'
 	option interface 'lan'
@@ -23,6 +24,7 @@ config dhcp 'lan'
 	option leasetime '12h'
 	option dhcpv6 'server'
 	option ra 'server'
+	option ra_management '1'
 
 config dhcp 'wan'
 	option interface 'wan'
@@ -97,4 +99,3 @@ config host
 	option mac '28:6c:07:22:8f:23'
 	option ip '192.168.0.155'
 	option name 'MiPlug-Undefined'
-
