@@ -27,8 +27,8 @@ print_log () {
 if [ "$(($LOGMINUTE%60))" == "0" ]
 then
 	wget -O /etc/smartrouter/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
-	ddns=`cat "/etc/smartrouter/ddns.log"`
-	print_log "[DDNS]: Heartbeating: "$ddns
+	ddns=$(cat "/etc/smartrouter/ddns.log")
+	print_log "[DDNS]: Heartbeating: $ddns"
 fi
 
 # See Shadowsocks is already started, and work properly
