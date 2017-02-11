@@ -1,6 +1,7 @@
 #!/bin/bash
 
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
+LOGMINUTE=$(date +"%M")
 
 # See if the Shadowsocks alive
 PID_F=`pgrep -f "ss-tunnel"`
@@ -22,6 +23,13 @@ print_log () {
 	fi
 }
 
+# DDNS heartbeats
+if [ "$(($LOGMINUTE%60))" == "0" ]
+then
+	wget -O /etc/smartrouter/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
+	ddns=`cat "/etc/smartrouter/ddns.log"`
+	print_log "[DDNS]: Heartbeating: "$ddns
+fi
 
 # See Shadowsocks is already started, and work properly
 if [ $PID_F ] && [ $PID_F -gt 0 ]
@@ -39,16 +47,9 @@ then
 			print_log "[SHADOWSOCKS]: NEW Connected. #ID: ("$PID_F"),("$ENABLED_SS")" true "enabled.mail"
                	else
 			# Logger every #60 minutes
-			LOGMINUTE=$(date +"%M")
 			if [ "$(($LOGMINUTE%60))" == "0" ]
 			then
 				print_log "[SHADOWSOCKS]: Hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
-
-				# DDNS heartbeats
-				wget -O /etc/smartrouter/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
-				ddns=`cat "/etc/smartrouter/ddns.log"`
-				print_log "[DDNS]: Heartbeating: "$ddns
-
 			#else
 				#print_log "[SHADOWSOCKS]: Checkpoint passed." false
 			fi
@@ -76,7 +77,7 @@ fi
 print_log "[SHADOWSOCKS]: The service is not started. #("$ENABLED_SS")." true
 
 
-# if it was good last time (mostlikely because of openwrt rebooting).
+# if it was good last time (most likely because of openwrt rebooting).
 if [ $ENABLED_SS -eq 0 ]
 then
         print_log "[SHADOWSOCKS]: The service was good last time. #("$ENABLED_SS")." true
@@ -121,7 +122,7 @@ then
 		wget --spider --quiet --tries=3 --timeout=3 www.baidu.com
 		if [ "$?" == "0" ]
 		then
-			print_log "[SHADOWSOCKS]: Problems still exsits after restarting the service. #ID: ("$PID_F"),("$ENABLED_SS")" true
+			print_log "[SHADOWSOCKS]: Problems still exists after restarting the service. #ID: ("$PID_F"),("$ENABLED_SS")" true
 		else
 			print_log "[SHADOWSOCKS]: Network issue after restarting the service, so require reboot?. #ID: ("$PID_F"),("$ENABLED_SS")" true "alert.mail"
 			#sh /etc/smartrouter/x-reboot.sh
