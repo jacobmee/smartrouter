@@ -1,0 +1,30 @@
+wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/serverspeeder/master/serverspeeder-all.sh && bash serverspeeder-all.sh
+
+chattr -i /serverspeeder/etc/apx* && /serverspeeder/bin/serverSpeeder.sh uninstall -f
+
+
+wget -O- 'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | awk -F\| '/CN\|ipv4/ { printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > /etc/shadowsocks/ignore.list
+
+/usr/bin/ss-rules \
+        -s "$server" \
+        -l "$local_port" \
+        -S "$udp_server" \
+        -L "$udp_local_port" \
+        -i "$ignore_list" \
+        -a "$ac_args" \
+        -b "$wan_bp_ip" \
+        -w "$wan_fw_ip" \
+        -e "$ipt_ext" \
+        -e "--dport 0:1024" \
+        -o $udp
+
+========
+ipset -N gfwlist iphash
+iptables -t nat -A PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port 1080
+iptables -t nat -A OUTPUT -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port 1080
+
+netstat -antlp | grep 8388
+
+ssserver -c /etc/shadowsocks.json -d start
+ssserver -c /etc/shadowsocks.json -d stop
+ssserver -c /etc/shadowsocks.json -d restart

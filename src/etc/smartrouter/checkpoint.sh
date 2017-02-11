@@ -43,6 +43,12 @@ then
 			if [ "$(($LOGMINUTE%60))" == "0" ]
 			then
 				print_log "[SHADOWSOCKS]: Hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
+
+				# DDNS heartbeats
+				wget -O /etc/smartrouter/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
+				ddns=`cat "/etc/smartrouter/ddns.log"`
+				print_log "[DDNS]: Heartbeating: "$ddns
+
 			#else
 				#print_log "[SHADOWSOCKS]: Checkpoint passed." false
 			fi
