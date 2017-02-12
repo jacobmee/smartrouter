@@ -27,7 +27,7 @@ echo "# Run the ImageBuilder"
 # With 5M spaced needed.
 
 cd $BUILD_DEST
-make image PROFILE=linksys-wrt1900acs PACKAGES="luci luci-theme-material wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl -dnsmasq dnsmasq-full shadowsocks-libev" FILES=files/
+make image PROFILE=linksys-wrt1900acs PACKAGES="luci luci-theme-material wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl -dnsmasq dnsmasq-full shadowsocks-libev luci-app-shadowsocks-libev ChinaDNS luci-app-chinadns" FILES=files/
 # disable luci-app-shadowsocks-libev
 
 echo "# Copy the target file into this Bin files"

@@ -11,20 +11,16 @@ config dnsmasq
 	option authoritative '1'
 	option readethers '1'
 	option leasefile '/tmp/dhcp.leases'
-	option resolvfile '/tmp/resolv.conf.auto'
 	option localservice '1'
-	list server '8.8.8.8'
-	list server '8.8.4.4'
 	option nonwildcard '0'
+	option noresolv '1'
+	list server '127.0.0.1#5300'
 
 config dhcp 'lan'
 	option interface 'lan'
 	option start '100'
-	option limit '150'
 	option leasetime '12h'
-	option dhcpv6 'server'
-	option ra 'server'
-	option ra_management '1'
+	option limit '50'
 
 config dhcp 'wan'
 	option interface 'wan'
@@ -96,6 +92,12 @@ config host
 	option name 'MiPlug-FishTankLights'
 
 config host
-	option mac '28:6c:07:22:8f:23'
-	option ip '192.168.0.155'
-	option name 'MiPlug-Undefined'
+	option name 'MiPlug-Racks'
+	option mac '28:6c:07:15:3d:d6'
+	option ip '192.168.0.156'
+
+config host
+	option mac 'b8:27:eb:c7:ab:4c'
+	option ip '192.168.0.201'
+	option name 'Pi'
+
