@@ -1,8 +1,0 @@
-
-config chinadns
-	option bidirectional '0'
-	option chnroute '/etc/smartrouter/ignore.list'
-	option port '5300'
-	option enable '1'
-	option server '114.114.114.114,127.0.0.1:5353'
-

@@ -4,7 +4,7 @@ LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 LOGMINUTE=$(date +"%M")
 
 # See if the Shadowsocks alive
-PID_F=`pgrep -f "ss-tunnel"`
+PID_F=`pgrep -f "ss-redir"`
 
 # Use this flag to indicate the VPN status
 ENABLED_SS=`sed -n 1p "/etc/smartrouter/ENABLED_SS"`
