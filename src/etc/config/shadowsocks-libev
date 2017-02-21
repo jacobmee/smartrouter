@@ -7,7 +7,7 @@ config shadowsocks-libev
 	option tunnel_port '5300'
 	option tunnel_forward '8.8.4.4:53'
 	option lan_ac_mode '0'
-	option server '162.243.91.140'
+	option server '188.166.73.46'
 	option timeout '600'
 	option password 'jac0bm11'
 	option encrypt_method 'aes-256-cfb'

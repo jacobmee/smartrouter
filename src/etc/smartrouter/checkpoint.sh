@@ -103,7 +103,7 @@ echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
 # logger -s " >>>>> DNSMASQ REFRESHED <<<<< "
 	
 # Start Shadowsocks
-/etc/init.d/shadowsocks start
+/etc/init.d/shadowsocks-libev restart
 sleep 10
 PID_F=`pgrep -f "ss-tunnel"`
 print_log "[SHADOWSOCKS]: The service is started. #ID: ("$PID_F"),("$ENABLED_SS")"

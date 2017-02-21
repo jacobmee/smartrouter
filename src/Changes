@@ -26,3 +26,8 @@ netstat -antlp | grep 8388
 ssserver -c /etc/shadowsocks.json -d start
 ssserver -c /etc/shadowsocks.json -d stop
 ssserver -c /etc/shadowsocks.json -d restart
+
+# To upgrade
+blkid
+mount -o remount,rw / UUID=""
+vi /etc/fstab
