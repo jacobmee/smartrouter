@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 LOGMINUTE=$(date +"%M")
