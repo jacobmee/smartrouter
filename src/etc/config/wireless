@@ -7,6 +7,7 @@ config wifi-device 'radio0'
 	option htmode 'VHT80'
 	option country 'US'
 	option txpower '23'
+	option log_level 4
 
 config wifi-iface 'default_radio0'
 	option device 'radio0'
@@ -25,6 +26,7 @@ config wifi-device 'radio1'
 	option country 'US'
 	option txpower '30'
 	option htmode 'HT20'
+	option log_level 4
 
 config wifi-iface 'default_radio1'
 	option device 'radio1'
