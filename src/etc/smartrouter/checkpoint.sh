@@ -50,7 +50,7 @@ then
 		then
 			let ENABLED_SS=0 # Reset VPN count
 			echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
-			print_log "[SHADOWSOCKS]: NEW Connected. #ID: ("$PID_F"),("$ENABLED_SS")" true "enabled.mail"
+			print_log "[SHADOWSOCKS]: Back to work. #ID: ("$PID_F"),("$ENABLED_SS")"
 		else
 			# Logger every #60 minutes
 			if [ "$(($LOGMINUTE%60))" == "0" ]
@@ -64,25 +64,29 @@ then
 		# Checkpoint passed successfully.
 		return 0
 	else
+		# Error+1
+		let ENABLED_SS=$ENABLED_SS+1  # Set Shadowsocks count one more
+		echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
+
 		# 4 means "Network Failure"
 		if  [ "$RETURNCODE" == "4" ]
 		then
 			wget --spider --quiet --tries=3 --timeout=3 www.baidu.com
 			print_log "[SHADOWSOCKS]: I'm alive. However, Baidu gave me #"$?" & Google gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
 			# Unnecessary to restart the shadowsocks, maybe a random issue
-			return 0
 		else
 			print_log "[SHADOWSOCKS]: I'm alive, but Google gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
 			# This requires a restart.
 		fi
+
+		if  [ $ENABLED_SS -lt 4 ]
+		then
+			return 0
+		fi
 	fi
 fi
 
-# Error+1
-let ENABLED_SS=$ENABLED_SS+1  # Set Shadowsocks count one more
-echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
-
-print_log "[SHADOWSOCKS & DNSMASQ]: The services are restarting..."
+print_log "[SHADOWSOCKS & DNSMASQ]: The services are restarting... #E: ("$ENABLED_SS")"
 # Restart DNSMASQ for refresh
 /etc/init.d/dnsmasq restart
 # Start Shadowsocks
@@ -97,7 +101,7 @@ then
 	wget --spider --quiet --tries=3 --timeout=3 www.google.com
 	if [ "$?" == "0" ]
 	then
-		print_log "[SHADOWSOCKS]: Successfully connected. #ID: ("$PID_F"),("$ENABLED_SS")" true "enabled.mail"
+		print_log "[SHADOWSOCKS]: Successfully NEW connected. #ID: ("$PID_F"),("$ENABLED_SS")" true "enabled.mail"
 			
 		if [ $ENABLED_SS -gt 0 ]
 		then
