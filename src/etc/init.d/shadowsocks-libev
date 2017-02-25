@@ -59,8 +59,7 @@ start_rules() {
 		-a "$ac_args" \
 		-b "$wan_bp_ip" \
 		-w "$wan_fw_ip" \
-		-e "$ipt_ext" \
-		-e "--dport 0:1024" \
+		-e "$ipt_ext --dport 0:1024" \
 		-o $udp
 	return $?
 }
