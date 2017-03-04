@@ -37,7 +37,7 @@ fi
 
 # See Shadowsocks is already started, and work properly
 if [ $PID_F ] && [ $PID_F -gt 0 ]; then
-	wget --spider --quiet --tries=3 --timeout=3 www.google.com
+	wget --no-check-certificate --spider --quiet --tries=3 --timeout=3 www.youtube.com
 	RETURNCODE=$?
 
 	# This is first time it works again.
@@ -59,7 +59,7 @@ if [ $PID_F ] && [ $PID_F -gt 0 ]; then
 	fi
 
 	wget --spider --quiet --tries=3 --timeout=3 www.baidu.com
-	print_log "[SHADOWSOCKS]: I'm alive. However, Baidu gave me #"$?" & Google gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
+	print_log "[SHADOWSOCKS]: I'm alive. However, Baidu gave me #"$?" & Youtube gave me #"$RETURNCODE". #ID: ("$PID_F"),("$ENABLED_SS")" true
 
 fi
 
@@ -73,18 +73,24 @@ if  [ $ENABLED_SS -lt 4 ]; then
 fi
 
 print_log "[SHADOWSOCKS & NETWORK]: The services are restarting... #E: ("$ENABLED_SS")"
-# Refresh the network
-/etc/init.d/network restart
-sleep 8
 
-# Start Shadowsocks
-/etc/init.d/shadowsocks-libev restart
+print_log "[SHADOWSOCKS & NETWORK]: Stopping Shadowsocks"
+/etc/init.d/shadowsocks-libev stop
+sleep 3
+
+print_log "[SHADOWSOCKS & NETWORK]: Refreshing the network"
+/etc/init.d/network restart
+sleep 20
+
+print_log "[SHADOWSOCKS & NETWORK]: Starting Shadowsocks"
+/etc/init.d/shadowsocks-libev start
+sleep 5
 
 # Double check if everything is fine
 PID_F=`pgrep -f "ss-redir"`
 if [ $PID_F ] && [ $PID_F -gt 0 ]; then
 
-	wget --spider --quiet --tries=3 --timeout=3 www.google.com
+	wget --no-check-certificate --spider --quiet --tries=3 --timeout=3 www.youtube.com
 	if [ "$?" == "0" ]; then
 		print_log "[SHADOWSOCKS]: Successfully NEW connected. #ID: ("$PID_F"),("$ENABLED_SS")" true "enabled.mail"
 			
@@ -97,7 +103,7 @@ if [ $PID_F ] && [ $PID_F -gt 0 ]; then
 	else
 		wget --spider --quiet --tries=3 --timeout=3 www.baidu.com
 		if [ "$?" == "0" ]; then
-			print_log "[SHADOWSOCKS]: Still can't access Google after restarting the service. #ID: ("$PID_F"),("$ENABLED_SS")" true
+			print_log "[SHADOWSOCKS]: Still can't access Youtube after restarting the service. #ID: ("$PID_F"),("$ENABLED_SS")" true
 		else
 			print_log "[SHADOWSOCKS]: Still everything is down after restarting the service. #ID: ("$PID_F"),("$ENABLED_SS")" true
 		fi
