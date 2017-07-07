@@ -21,7 +21,34 @@ print_log () {
 	fi
 }
 
-# DDNS heartbeats
+ping_address () {
+
+	ping -c 1 -W 10 -w 10 $1 >/dev/null
+	ret=$?
+
+	#echo ping result $ret
+	if [ $ret -eq 0 ]; then
+		#print_log "Heartbeating [$1] PASS"
+		return
+	else
+		print_log "Heartbeating [$1] FAILED" true
+		#From: Router.Home <router@mitang.me>
+		#Subject:[Router] Watchdog alert!
+		if [ "$(($LOGMINUTE%30))" == "0" ]; then
+			printf "From: Router.Home <router@mitang.me>\nSubject: [Router] Watchdog [$1] is not accessible!\n\nAlert!\n[$1] is not accessible at this moment, please check.\n" | msmtp -a default admin@mitang.me
+		fi
+		sleep 1
+	fi
+}
+
+# Watch dogs important servers.
+ping_address "Tanghut"
+ping_address "Walkhutair"
+ping_address "MiTangDS"
+ping_address "R6900"
+#ping_address "FakeMachine"
+
+# DDNS heartbeats update
 if [ "$(($LOGMINUTE%60))" == "0" ]; then
 	wget -O /etc/smartrouter/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
 	ddns=$(cat "/etc/smartrouter/ddns.log")
@@ -35,6 +62,7 @@ if [ "$(($LOGMINUTE%60))" == "0" ]; then
 
 fi
 
+# Shadowsocks checking
 # See Shadowsocks is already started, and work properly
 if [ $PID_F ] && [ $PID_F -gt 0 ]; then
 	wget --no-check-certificate --spider --quiet --tries=3 --timeout=3 www.youtube.com
@@ -67,8 +95,8 @@ fi
 let ENABLED_SS=$ENABLED_SS+1  # Set Shadowsocks count one more
 echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
 
-# Don't necessary to restart if errors < 4 times
-if  [ $ENABLED_SS -lt 4 ]; then
+# Don't necessary to restart if errors < 5 times
+if  [ $ENABLED_SS -lt 6 ]; then
 	return 0
 fi
 
