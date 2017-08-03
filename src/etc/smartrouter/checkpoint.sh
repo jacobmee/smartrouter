@@ -2,6 +2,7 @@
 
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 LOGMINUTE=$(date +"%M")
+D_MIN=60
 
 # See if the Shadowsocks alive
 PID_F=`pgrep -f "ss-redir"`
@@ -28,13 +29,14 @@ ping_address () {
 
 	#echo ping result $ret
 	if [ $ret -eq 0 ]; then
-		#print_log "Heartbeating [$1] PASS"
-		return
+		if [ "$(($LOGMINUTE%$D_MIN))" == "0" ]; then		
+			print_log "[Watchdog] $1: PASS"
+		fi
 	else
-		print_log "Heartbeating [$1] FAILED" true
+		print_log "[Watchdog] $1: FAILED" true
 		#From: Router.Home <router@mitang.me>
 		#Subject:[Router] Watchdog alert!
-		if [ "$(($LOGMINUTE%30))" == "0" ]; then
+		if [ "$(($LOGMINUTE%$D_MIN))" == "0" ]; then
 			printf "From: Router.Home <router@mitang.me>\nSubject: [Router] Watchdog [$1] is not accessible!\n\nAlert!\n[$1] is not accessible at this moment, please check.\n" | msmtp -a default admin@mitang.me
 		fi
 		sleep 1
@@ -42,22 +44,22 @@ ping_address () {
 }
 
 # Watch dogs important servers.
+ping_address "R6900"
 ping_address "Tanghut"
 ping_address "Walkhutair"
 ping_address "MiTangDS"
-ping_address "R6900"
 #ping_address "FakeMachine"
 
 # DDNS heartbeats update
-if [ "$(($LOGMINUTE%60))" == "0" ]; then
-	wget -O /etc/smartrouter/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
+if [ "$(($LOGMINUTE%$D_MIN))" == "0" ]; then
+	wget --quiet -O /etc/smartrouter/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
 	ddns=$(cat "/etc/smartrouter/ddns.log")
 
 	case $ddns in
 		*nochg*)
-			;;
+			print_log "[DDNS]: $ddns" ;;
 		*)
-			print_log "[DDNS]: Heartbeating: $ddns" ;;
+			print_log "[DDNS]: $ddns" ;;
 	esac
 
 fi
@@ -77,7 +79,7 @@ if [ $PID_F ] && [ $PID_F -gt 0 ]; then
 			print_log "[SHADOWSOCKS]: Back to work. #ID: ("$PID_F"),("$ENABLED_SS")"
 		else
 			# Logger every #60 minutes
-			if [ "$(($LOGMINUTE%60))" == "0" ]; then
+			if [ "$(($LOGMINUTE%$D_MIN))" == "0" ]; then
 				print_log "[SHADOWSOCKS]: Hourly checkpoint passed. #ID: ("$PID_F"),("$ENABLED_SS")"
 			fi
 		fi

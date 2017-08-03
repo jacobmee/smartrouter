@@ -13,9 +13,7 @@ config dnsmasq
 	option leasefile '/tmp/dhcp.leases'
 	option localservice '1'
 	option nonwildcard '0'
-	option noresolv '1'
-	list server '208.67.222.222'
-	list server '208.67.202.202'
+	list server '127.0.0.1#5353'
 
 config dhcp 'lan'
 	option interface 'lan'
@@ -36,6 +34,7 @@ config host
 	option name 'R6900'
 	option mac '2c:30:33:5b:25:04'
 	option ip '192.168.0.3'
+	option dns '1'
 
 config host
 	option mac '00:21:85:32:55:5c'
@@ -66,6 +65,7 @@ config host
 	option name 'MiTangDS'
 	option mac '00:11:32:30:09:fb'
 	option ip '192.168.0.200'
+	option dns '1'
 
 config host
 	option mac 'f0:b4:29:b3:dd:83'
@@ -100,5 +100,17 @@ config host
 config host
 	option mac 'b8:27:eb:c7:ab:4c'
 	option ip '192.168.0.201'
-	option name 'Pi'
+	option name 'Tanghutair'
+	
+config host
+	option mac 'b8:27:eb:92:fe:19'
+	option ip '192.168.0.202'
+	option name 'Tanghut'
+	option dns '1'
+
+config host
+	option name 'Walkhutair'
+	option mac 'b8:27:eb:d3:09:81'
+	option ip '192.168.0.203'
+	option dns '1'
 

@@ -1,6 +1,5 @@
 
 config shadowsocks-libev
-	option enable '1'
 	option server_port '8388'
 	option local_port '1080'
 	option udp_mode '0'
@@ -12,5 +11,6 @@ config shadowsocks-libev
 	option password 'jac0bm11'
 	option encrypt_method 'aes-256-cfb'
 	option ignore_list '/etc/smartrouter/ignore.list'
-	option tunnel_enable '0'
+	option enable '1'
+	option tunnel_enable '1'
 

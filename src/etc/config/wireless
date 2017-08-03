@@ -7,7 +7,7 @@ config wifi-device 'radio0'
 	option htmode 'VHT80'
 	option country 'US'
 	option txpower '23'
-	option log_level 3
+	option log_level '3'
 
 config wifi-iface 'default_radio0'
 	option device 'radio0'
@@ -26,7 +26,7 @@ config wifi-device 'radio1'
 	option country 'US'
 	option txpower '30'
 	option htmode 'HT20'
-	option log_level 3
+	option log_level '3'
 
 config wifi-iface 'default_radio1'
 	option device 'radio1'
@@ -36,4 +36,6 @@ config wifi-iface 'default_radio1'
 	option ssid 'MiTang'
 	option encryption 'psk-mixed'
 	option key 'abc123_+U'
+	option macfilter 'deny'
+	list maclist '00:9E:C8:2E:5D:EE'
 

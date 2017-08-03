@@ -149,7 +149,6 @@ config redirect
 	option name 'DSM 5001'
 
 config redirect
-	option enabled '1'
 	option target 'DNAT'
 	option src 'wan'
 	option dest 'lan'
@@ -166,4 +165,20 @@ config rule
 	option proto 'tcp udp'
 	option dest_port '202'
 	option name 'Allow-SSH 202'
+
+config include 'shadowsocks_libev'
+	option type 'script'
+	option path '/usr/share/shadowsocks-libev/firewall.include'
+	option reload '1'
+
+config redirect
+	option enabled '1'
+	option target 'DNAT'
+	option src 'wan'
+	option dest 'lan'
+	option proto 'tcp udp'
+	option src_dport '8096'
+	option dest_ip '192.168.0.202'
+	option dest_port '8096'
+	option name 'Emby 8096'
 
