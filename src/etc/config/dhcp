@@ -13,7 +13,7 @@ config dnsmasq
 	option leasefile '/tmp/dhcp.leases'
 	option localservice '1'
 	option nonwildcard '0'
-	list server '127.0.0.1#5353'
+	list server '127.0.0.1#5300'
 
 config dhcp 'lan'
 	option interface 'lan'
@@ -101,7 +101,7 @@ config host
 	option mac 'b8:27:eb:c7:ab:4c'
 	option ip '192.168.0.201'
 	option name 'Tanghutair'
-	
+
 config host
 	option mac 'b8:27:eb:92:fe:19'
 	option ip '192.168.0.202'
