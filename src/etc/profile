@@ -16,8 +16,13 @@ export HOME=${HOME:-/root}
 [ -x /usr/bin/vim ] && alias vi=vim || alias vim=vi
 
 #set ash prompt to red for root user
+
+alias ll='ls -lF'
+alias la='ls -A'
+alias l='ls -CF'
+
 export PS1="\[\e[01;32m\]\u\[\e[m\]@\[\e[01;33m\]\h\[\e[m\]:\[\e[01;34m\]\w\[\e[m\] \[\e[01;34m\]\\$\[\e[m\] "
-alias ll='ls -alF --color=auto'
+
 
 [ -z "$KSH_VERSION" -o \! -s /etc/mkshrc ] || . /etc/mkshrc
 
