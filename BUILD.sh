@@ -1,7 +1,6 @@
 # This build file is to setting up the files folder under ImageBuilder
 
 # Define the destination
-# BUILD_DEST=~/Workspace/OpenWrt-ImageBuilder-15.05.1-mvebu.Linux-x86_64
 BUILD_DEST=~/workspaces/Router.LinkSys.WRT1900ACS2/lede-imagebuilder-17.01.2-mvebu.Linux-x86_64
 
 DEST=~/workspaces/smartrouter
