@@ -3,22 +3,24 @@
 LOGTIME=$(date "+%Y-%m-%d %H:%M:%S")
 LOGMINUTE=$(date +"%M")
 D_MIN=60
+# Get where the current bash file located
+BASH_DIR=$(cd `dirname $0`; pwd)
 
 # See if the Shadowsocks alive
 PID_F=`pgrep -f "ss-redir"`
 
 # Use this flag to indicate the VPN status
-ENABLED_SS=`sed -n 1p "/etc/smartrouter/ENABLED_SS"`
+ENABLED_SS=`sed -n 1p "$BASH_DIR/ENABLED_SS"`
 
 print_log () {
 	logger -s $1
 	
 	if [ "$2" = true ]; then
-		echo "["$LOGTIME"] "$1 >> /etc/smartrouter/reconnect.log
+		echo "["$LOGTIME"] "$1 >> $BASH_DIR/reconnect.log
 	fi
 
 	if [ "$3" ]; then
-		cat /etc/smartrouter/mails/$3 | msmtp -a default admin@mitang.me
+		cat $BASH_DIR/mails/$3 | msmtp -a default admin@mitang.me
 	fi
 }
 
@@ -52,8 +54,8 @@ ping_address "MiTangDS"
 
 # DDNS heartbeats update
 if [ "$(($LOGMINUTE%$D_MIN))" == "0" ]; then
-	wget --quiet -O /etc/smartrouter/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
-	ddns=$(cat "/etc/smartrouter/ddns.log")
+	wget --quiet -O $BASH_DIR/ddns.log http://jacobmee:jac0bm11@ddns.oray.com/ph/update?hostname=jacobmee.eicp.net
+	ddns=$(cat "$BASH_DIR/ddns.log")
 
 	case $ddns in
 		*nochg*)
@@ -75,7 +77,7 @@ if [ $PID_F ] && [ $PID_F -gt 0 ]; then
 		# Reset Error counts
 		if [ $ENABLED_SS -gt 0 ]; then
 			let ENABLED_SS=0
-			echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
+			echo $ENABLED_SS>$BASH_DIR/ENABLED_SS
 			print_log "[SHADOWSOCKS]: Back to work. #ID: ("$PID_F"),("$ENABLED_SS")"
 		else
 			# Logger every #60 minutes
@@ -95,7 +97,7 @@ fi
 
 # Error+1
 let ENABLED_SS=$ENABLED_SS+1  # Set Shadowsocks count one more
-echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
+echo $ENABLED_SS>$BASH_DIR/ENABLED_SS
 
 # Don't necessary to restart if errors < 5 times
 if  [ $ENABLED_SS -lt 6 ]; then
@@ -126,7 +128,7 @@ if [ $PID_F ] && [ $PID_F -gt 0 ]; then
 			
 		if [ $ENABLED_SS -gt 0 ]; then
 			let ENABLED_SS=0 # Reset VPN count
-			echo $ENABLED_SS>/etc/smartrouter/ENABLED_SS
+			echo $ENABLED_SS>$BASH_DIR/ENABLED_SS
 		fi
         
 	# Try Baidu
