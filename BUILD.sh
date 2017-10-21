@@ -5,7 +5,7 @@ BASH_DIR=$(cd `dirname $0`; pwd)
 
 # Define the destination
 DEST=$BASH_DIR
-BUILD_DEST=$BASH_DIR/../Router.LinkSys.WRT1900ACS2/lede-imagebuilder-17.01.2-mvebu.Linux-x86_64
+BUILD_DEST=$BASH_DIR/../Router.LinkSys.WRT1900ACS2/lede-imagebuilder-17.01.4-mvebu.Linux-x86_64
 
 echo "# Clean and setup destination: "
 echo "# ImageBuilder: "$BUILD_DEST
