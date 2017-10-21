@@ -13,7 +13,7 @@ config dnsmasq
 	option leasefile '/tmp/dhcp.leases'
 	option localservice '1'
 	option nonwildcard '0'
-	list server '127.0.0.1#5300'
+	list server '127.0.0.1#5353'
 
 config dhcp 'lan'
 	option interface 'lan'
@@ -96,6 +96,22 @@ config host
 	option name 'MiPlug-Racks'
 	option mac '28:6c:07:15:3d:d6'
 	option ip '192.168.0.156'
+
+config host
+	option name 'Redsea-Balling'
+	option dns '1'
+	option mac 'f0:fe:6b:26:3b:c8'
+	option ip '192.168.0.157'
+
+config host
+	option name 'Redsea-Power'
+	option mac '28:6c:07:17:4c:94'
+	option ip '192.168.0.158'
+
+config host
+	option name 'Redsea-heating'
+	option mac '28:6c:07:22:8f:23'
+	option ip '192.168.0.159'
 
 config host
 	option mac 'b8:27:eb:c7:ab:4c'

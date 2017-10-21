@@ -14,9 +14,9 @@ config wifi-iface 'default_radio0'
 	option network 'lan'
 	option mode 'ap'
 	option macaddr '16:91:82:c7:89:24'
-	option encryption 'psk-mixed'
 	option key 'abc123_+U'
 	option ssid 'MiTang'
+	option encryption 'psk-mixed'
 
 config wifi-device 'radio1'
 	option type 'mac80211'
@@ -38,4 +38,11 @@ config wifi-iface 'default_radio1'
 	option key 'abc123_+U'
 	option macfilter 'deny'
 	list maclist '00:9E:C8:2E:5D:EE'
+
+config wifi-iface
+	option device 'radio0'
+	option mode 'ap'
+	option encryption 'none'
+	option ssid 'MiTang-Guest'
+	option disabled '1'
 

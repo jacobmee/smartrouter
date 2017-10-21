@@ -159,7 +159,6 @@ config redirect
 	option name 'DSM 443'
 
 config rule
-	option enabled '1'
 	option target 'ACCEPT'
 	option src 'wan'
 	option proto 'tcp udp'
@@ -172,7 +171,6 @@ config include 'shadowsocks_libev'
 	option reload '1'
 
 config redirect
-	option enabled '1'
 	option target 'DNAT'
 	option src 'wan'
 	option dest 'lan'
@@ -181,4 +179,41 @@ config redirect
 	option dest_ip '192.168.0.202'
 	option dest_port '8096'
 	option name 'Emby 8096'
+
+config redirect
+	option target 'DNAT'
+	option src 'wan'
+	option dest 'lan'
+	option proto 'tcp udp'
+	option dest_ip '192.168.0.202'
+	option dest_port '32400'
+	option src_dport '3240'
+	option name 'Plex 3240'
+
+config rule
+	option proto 'tcp udp'
+	option src 'lan'
+	option src_ip '192.168.0.104'
+	option dest 'wan'
+	option target 'DROP'
+	option stop_time '20:00:00'
+	option start_time '21:30:00'
+	option name 'Mibox Weekdays'
+	option weekdays 'Mon Tue Wed Thu'
+
+config rule
+	option enabled '1'
+	option src 'lan'
+	option dest 'wan'
+	option src_ip '192.168.0.104'
+	option target 'DROP'
+	option stop_time '09:00:00'
+	option name 'MiBox Weekend'
+	option weekdays 'Sun Fri Sat'
+	option start_time '22:30:00'
+
+config include 'shadowsocks'
+	option type 'script'
+	option path '/var/etc/shadowsocks.include'
+	option reload '1'
 
