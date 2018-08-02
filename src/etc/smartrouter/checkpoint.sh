@@ -45,13 +45,15 @@ ping_address () {
 	fi
 }
 
-# Watch dogs important servers.
-ping_address "R6900"
-ping_address "Tanghut"
-ping_address "Walkhutair"
-ping_address "MiTangDS"
-ping_address "Redsea-Balling"
+# Watch dogs important servers.                                                                                                                                        
+# ping_address "R6900"                                                                                                                                                    
+ping_address "Tanghut"                                                                                                                                                    
+ping_address "Walkhutair"                                                                                                                                                 
+ping_address "MiTangDS"                                                                                                                                                   
+ping_address "Redsea-MainBalling"                                                                                                                                         
+ping_address "Redsea-MinorBalling"                                                                                                                                        
 #ping_address "FakeMachine"
+
 
 # DDNS heartbeats update
 if [ "$(($LOGMINUTE%$D_MIN))" == "0" ]; then
