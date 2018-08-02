@@ -1,4 +1,4 @@
-# This build file is to setting up the files folder under ImageBuilder
+ # This build file is to setting up the files folder under ImageBuilder
 
 # Get where the current bash file located
 BASH_DIR=$(cd `dirname $0`; pwd)
