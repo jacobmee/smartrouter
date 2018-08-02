@@ -5,7 +5,7 @@ BASH_DIR=$(cd `dirname $0`; pwd)
 
 # Define the destination
 DEST=$BASH_DIR
-BUILD_DEST=$BASH_DIR/../Router.LinkSys.WRT1900ACS2/lede-imagebuilder-17.01.4-mvebu.Linux-x86_64
+BUILD_DEST=$BASH_DIR/../Router.LinkSys.WRT1900ACS2/openwrt-imagebuilder-18.06.0-mvebu-cortexa9.Linux-x86_64/
 
 echo "# Clean and setup destination: "
 echo "# ImageBuilder: "$BUILD_DEST
@@ -34,7 +34,7 @@ make image PROFILE=linksys-wrt1900acs PACKAGES="luci luci-theme-material wget ms
 echo "# Copy the target file into this Bin files"
 cd $DEST
 mkdir bin
-cp $BUILD_DEST/build_dir/target-arm_cortex-a9+vfpv3_musl-1.1.16_eabi/linux-mvebu/tmp/**wrt1900acs* bin/
+cp $BUILD_DEST/build_dir/target-arm_cortex-a9+vfpv3_musl_eabi/linux-mvebu_cortexa9/tmp/**wrt1900acs* bin/
 
 echo "# Clean files"
 rm -rf re$BUILD_DEST/files
