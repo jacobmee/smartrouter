@@ -98,12 +98,6 @@ config host
 	option ip '192.168.0.156'
 
 config host
-	option name 'Redsea-Balling'
-	option dns '1'
-	option mac 'f0:fe:6b:26:3b:c8'
-	option ip '192.168.0.157'
-
-config host
 	option name 'Redsea-Power'
 	option mac '28:6c:07:17:4c:94'
 	option ip '192.168.0.158'
@@ -113,6 +107,18 @@ config host
 	option mac '28:6c:07:22:8f:23'
 	option ip '192.168.0.159'
 
+config host
+        option dns '1'
+        option mac 'f0:fe:6b:26:3b:c8'
+        option name 'Redsea-MainBalling'
+        option ip '192.168.0.160'
+	
+config host
+        option name 'Redsea-MinorBalling'
+        option dns '1'
+        option mac 'F0:FE:6B:26:B4:84'
+        option ip '192.168.0.161'
+	
 config host
 	option mac 'b8:27:eb:c7:ab:4c'
 	option ip '192.168.0.201'
