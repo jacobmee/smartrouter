@@ -98,6 +98,16 @@ config host
 	option ip '192.168.0.156'
 
 config host
+	option name 'MiPlug-unknown1'
+	option mac '34:ce:00:c8:6a:00'
+	option ip '192.168.0.157'
+	
+config host
+	option name 'MiPlug-unknown2'
+	option mac '34:ce:00:c8:87:9f'
+	option ip '192.168.0.158'	
+	
+config host
 	option name 'Redsea-Power'
 	option mac '28:6c:07:17:4c:94'
 	option ip '192.168.0.160'
