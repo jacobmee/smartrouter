@@ -38,7 +38,7 @@ cp $BUILD_DEST/build_dir/target-arm_cortex-a9+vfpv3_musl-1.1.16_eabi/linux-mvebu
 
 echo "# Clean files"
 rm -rf re$BUILD_DEST/files
-rm -rf $BUILD_DEST/bin
+#rm -rf $BUILD_DEST/bin
 
 echo "##############################################"
 echo "#    DONE, Please check the BIN folder!      #"
