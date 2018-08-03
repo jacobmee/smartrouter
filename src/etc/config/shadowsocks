@@ -22,7 +22,7 @@ config port_forward
 config servers
 	option timeout '60'
 	option alias 'MiTangShadowsocks'
-	option server '178.62.240.48'
+	option server '188.166.54.15'
 	option encrypt_method 'chacha20-ietf-poly1305'
 	option password 'jac0bm11'
 	option plugin 'obfs-local'
