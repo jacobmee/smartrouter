@@ -9,7 +9,7 @@ The build program is for **LINKSYS WRT1900ACS.V2** based on **LEDE 18.06.1**.
 
 * **Author**:	Jacob Mee
 * **Email**:	jacob@mitang.me
-* **Date**:	Sept 10th, 2016
+* **Date**:	Aug 21st, 2018
 
 ## Components guides
 
