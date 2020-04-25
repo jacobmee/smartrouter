@@ -47,12 +47,12 @@ ping_address () {
 
 # Watch dogs important servers.                                                                                                                                        
 # ping_address "R6900"                                                                                                                                                    
-ping_address "Tanghut"                                                                                                                                                    
-ping_address "Walkhutair"                                                                                                                                                 
+# ping_address "Tanghut"                                                                                                                                                    
+# ping_address "Walkhutair"                                                                                                                                                 
 ping_address "MiTangDS"                                                                                                                                                   
-ping_address "Redsea-MainBalling"                                                                                                                                         
-ping_address "Redsea-MinorBalling"                                                                                                                                        
-#ping_address "FakeMachine"
+# ping_address "Redsea-MainBalling"                                                                                                                                         
+# ping_address "Redsea-MinorBalling"                                                                                                                                        
+# ping_address "FakeMachine"
 
 
 # DDNS heartbeats update

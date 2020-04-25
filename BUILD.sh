@@ -5,7 +5,7 @@ BASH_DIR=$(cd `dirname $0`; pwd)
 
 # Define the destination
 DEST=$BASH_DIR
-BUILD_DEST=$BASH_DIR/../Router.LinkSys.WRT1900ACS2/openwrt-imagebuilder-19.07.0-rc2-mvebu-cortexa9.Linux-x86_64
+BUILD_DEST=$BASH_DIR/../Router.LinkSys.WRT1900ACS2/openwrt-imagebuilder-18.06.4-mvebu-cortexa9.Linux-x86_64/
 
 echo "# Clean and setup destination: "
 echo "# ImageBuilder: "$BUILD_DEST
@@ -28,7 +28,7 @@ echo "# Run the ImageBuilder"
 # With 5M spaced needed.
 
 cd $BUILD_DEST
-make image PROFILE=linksys_wrt1900acs PACKAGES="luci luci-theme-material wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl -dnsmasq dnsmasq-full shadowsocks-libev luci-app-shadowsocks ChinaDNS luci-app-chinadns simple-obfs" FILES=files/
+make image PROFILE=linksys-wrt1900acs PACKAGES="luci luci-theme-material wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl -dnsmasq dnsmasq-full v2ray-core luci-app-v2ray" FILES=files/
 # disable ChinaDNS luci-app-chinadns
 
 echo "# Copy the target file into this Bin files"
