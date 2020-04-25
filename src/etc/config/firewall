@@ -109,19 +109,6 @@ config rule
 config include
 	option path '/etc/firewall.user'
 
-config rule
-	option src 'wan'
-	option dest 'lan'
-	option proto 'esp'
-	option target 'ACCEPT'
-
-config rule
-	option src 'wan'
-	option dest 'lan'
-	option dest_port '500'
-	option proto 'udp'
-	option target 'ACCEPT'
-
 config include 'miniupnpd'
 	option type 'script'
 	option path '/usr/share/miniupnpd/firewall.include'
