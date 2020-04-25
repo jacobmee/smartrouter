@@ -4,7 +4,7 @@ This project is used to build an OPENWRT router so to:
 * **Smart Router** based on the target websites by **Shadowsocks** with wget heartbeat
 
 
-The build program is for **LINKSYS WRT1900ACS.V2** based on **WRT19.07.0-rc2**. 
+The build program is for **LINKSYS WRT1900ACS.V2** based on **WRT18.06.4**. 
 
 
 * **Author**:	Jacob Mee
