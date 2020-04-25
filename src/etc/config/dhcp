@@ -62,6 +62,12 @@ config host
 	option name 'MiBox3'
 
 config host
+	option name 'Nvidia-Shield'
+	option dns '1'
+	option mac '00:04:4b:f0:fa:0e'
+	option ip '192.168.0.106'
+	
+config host
 	option name 'MiTangDS'
 	option mac '00:11:32:30:09:fb'
 	option ip '192.168.0.200'
