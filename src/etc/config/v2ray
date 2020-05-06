@@ -8,7 +8,7 @@ config v2ray 'main'
 	option stats_enabled '1'
 	option inbounds 'dokodemo_door'
 	option outbounds 'vmess'
-	option enabled '1'
+	option enabled '0'
 
 config dns 'main_dns'
 	list hosts 'example.com|127.0.0.1'

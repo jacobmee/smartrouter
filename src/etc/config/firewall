@@ -204,3 +204,9 @@ config include 'shadowsocks'
 	option path '/var/etc/shadowsocks.include'
 	option reload '1'
 
+config include 'v2ray'
+	option type 'script'
+	option path '/etc/firewall.v2ray'
+	option family 'any'
+	option reload '1'
+

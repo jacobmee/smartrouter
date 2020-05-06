@@ -8,7 +8,7 @@ config system
 	option log_proto 'udp'
 	option cronloglevel '9'
 	option conloglevel '5'
-	option hostname 'WRT1900ACS2'
+	option hostname 'AP-One'
 
 config timeserver 'ntp'
 	option enabled '1'

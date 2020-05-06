@@ -1,3 +1,0 @@
-*/3 * * * * sh /etc/smartrouter/checkpoint.sh
-0 0 * * 1 sh /etc/smartrouter/refresh.sh
-*/5 * * * * /sbin/fan_ctrl.sh
