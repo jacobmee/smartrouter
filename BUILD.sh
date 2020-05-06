@@ -28,7 +28,7 @@ echo "# Run the ImageBuilder"
 # With 5M spaced needed.
 
 cd $BUILD_DEST
-make image PROFILE=linksys_wrt1900acs PACKAGES="luci luci-theme-material wget msmtp vsftpd openssh-sftp-server iptables-mod-nat-extra ipset libopenssl -dnsmasq dnsmasq-full v2ray-core luci-app-v2ray" FILES=files/
+make image PROFILE=linksys_wrt1900acs PACKAGES="luci luci-theme-material wget vsftpd openssh-sftp-server" FILES=files/
 # disable ChinaDNS luci-app-chinadns
 
 echo "# Copy the target file into this Bin files"
