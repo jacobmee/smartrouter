@@ -6,7 +6,7 @@ BASH_DIR=$(cd `dirname $0`; pwd)
 # Define the destination
 DEST=$BASH_DIR
 SRC=$DEST/src/linksys_wrt1900acs
-BUILD_DEST=$BASH_DIR/../imageBuilder/openwrt-imagebuilder-19.07.2-mvebu-cortexa9.Linux-x86_64/
+BUILD_DEST=$BASH_DIR/../imagebuilder/openwrt-imagebuilder-19.07.2-mvebu-cortexa9.Linux-x86_64
 
 echo "# Clean and setup destination: "
 echo "# ImageBuilder: "$BUILD_DEST

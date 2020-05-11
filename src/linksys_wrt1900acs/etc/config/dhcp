@@ -1,7 +1,6 @@
 
 config dnsmasq
 	option domainneeded '1'
-	option boguspriv '1'
 	option localise_queries '1'
 	option rebind_protection '1'
 	option rebind_localhost '1'
@@ -17,13 +16,7 @@ config dnsmasq
 
 config dhcp 'lan'
 	option interface 'lan'
-	option start '100'
-	option leasetime '12h'
-	option limit '50'
-	option force '1'
-  list dhcp_option '3, 192.168.0.2'
-  list dhcp_option '6, 192.168.0.2'
-
+	option ignore '1'
 
 config dhcp 'wan'
 	option interface 'wan'
@@ -33,140 +26,3 @@ config odhcpd 'odhcpd'
 	option maindhcp '0'
 	option leasefile '/tmp/hosts/odhcpd'
 	option leasetrigger '/usr/sbin/odhcpd-update'
-
-config host
-	option name 'R6900'
-	option mac '2c:30:33:5b:25:04'
-	option ip '192.168.0.3'
-	option dns '1'
-
-config host
-	option mac '00:21:85:32:55:5c'
-	option ip '192.168.0.100'
-	option name 'MiTangDesktop'
-
-config host
-	option mac 'a8:20:66:36:a5:66'
-	option ip '192.168.0.101'
-	option name 'SF-MBP2013'
-
-config host
-	option name 'MS-SurfaceBook'
-	option mac '98:5f:d3:53:05:44'
-	option ip '192.168.0.102'
-
-config host
-	option name 'SharpTV'
-	option mac '24:05:0f:7f:72:3f'
-	option ip '192.168.0.103'
-
-config host
-	option mac '00:9e:c8:2e:5d:ee'
-	option ip '192.168.0.104'
-	option name 'MiBox3'
-
-config host
-	option name 'Nvidia-Shield'
-	option dns '1'
-	option mac '00:04:4b:f0:fa:0e'
-	option ip '192.168.0.106'
-
-config host
-	option name 'MiTangDS'
-	option mac '00:11:32:30:09:fb'
-	option ip '192.168.0.200'
-	option dns '1'
-
-config host
-	option mac 'f0:b4:29:b3:dd:83'
-	option name 'Mi-Gateway'
-	option ip '192.168.0.150'
-
-config host
-	option mac 'f0:b4:29:bd:c0:ea'
-	option ip '192.168.0.151'
-	option name 'Mi-DeskLamp'
-
-config host
-	option mac 'f0:b4:29:b7:f3:0e'
-	option ip '192.168.0.152'
-	option name 'Mi-ColorfulBulb'
-
-config host
-	option mac '28:6c:07:21:b9:c5'
-	option ip '192.168.0.153'
-	option name 'MiPlug-DXRouter'
-
-config host
-	option mac '28:6c:07:22:8a:44'
-	option ip '192.168.0.154'
-	option name 'MiPlug-FishTankLights'
-
-config host
-	option name 'MiPlug-Racks'
-	option mac '28:6c:07:15:3d:d6'
-	option ip '192.168.0.156'
-
-config host
-	option name 'MiPlug-unknown1'
-	option mac '34:ce:00:c8:6a:00'
-	option ip '192.168.0.157'
-
-config host
-	option name 'MiPlug-unknown2'
-	option mac '34:ce:00:c8:87:9f'
-	option ip '192.168.0.158'
-
-config host
-	option name 'Redsea-Lighting-Parent'
-	option mac 'd8:97:60:03:c0:de'
-	option ip '192.168.0.160'
-
-config host
-	option name 'Redsea-Lighting-Child1'
-	option mac 'd8:97:60:04:1c:46'
-	option ip '192.168.0.161'
-
-config host
-	option name 'Redsea-Lighting-Child2'
-	option mac 'd8:97:60:04:1b:4a'
-	option ip '192.168.0.162'
-
-config host
-	option name 'Redsea-Power'
-	option mac '28:6c:07:17:4c:94'
-	option ip '192.168.0.163'
-
-config host
-	option name 'Redsea-heating'
-	option mac '28:6c:07:22:8f:23'
-	option ip '192.168.0.164'
-
-config host
-        option dns '1'
-        option mac 'f0:fe:6b:26:3b:c8'
-        option name 'Redsea-MainBalling'
-        option ip '192.168.0.165'
-
-config host
-        option name 'Redsea-MinorBalling'
-        option dns '1'
-        option mac 'F0:FE:6B:26:B4:84'
-        option ip '192.168.0.166'
-
-config host
-	option mac 'b8:27:eb:c7:ab:4c'
-	option ip '192.168.0.201'
-	option name 'Tanghutair'
-
-config host
-	option mac 'b8:27:eb:92:fe:19'
-	option ip '192.168.0.202'
-	option name 'Tanghut'
-	option dns '1'
-
-config host
-	option name 'Walkhutair'
-	option mac 'b8:27:eb:d3:09:81'
-	option ip '192.168.0.203'
-	option dns '1'

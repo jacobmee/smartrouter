@@ -11,20 +11,11 @@ config globals 'globals'
 config interface 'lan'
 	option type 'bridge'
 	option ifname 'eth1'
-	option proto 'static'
-	option netmask '255.255.255.0'
-	option ip6assign '60'
-	option ipaddr '192.168.0.1'
-	option dns '114.114.114.114'
-	option gateway '192.168.0.2'
+	option proto 'dhcp'
 
 config interface 'wan'
 	option ifname 'eth0'
-	option proto 'pppoe'
-	option username 'ad54424707'
-	option password '8TwdjAMW'
-	option ipv6 'auto'
-	option keepalive '0'
+	option proto 'dhcp'
 
 config switch
 	option name 'switch0'
@@ -40,4 +31,3 @@ config switch_vlan
 	option device 'switch0'
 	option vlan '2'
 	option ports '4 5'
-
