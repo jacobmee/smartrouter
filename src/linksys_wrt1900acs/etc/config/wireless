@@ -39,10 +39,9 @@ config wifi-iface 'default_radio1'
 	option macfilter 'deny'
 	list maclist '00:9E:C8:2E:5D:EE'
 
-config wifi-iface
+config wifi-iface 'wifinet0'
 	option device 'radio0'
 	option mode 'ap'
 	option encryption 'none'
 	option ssid 'MiTang-Guest'
 	option disabled '1'
-
