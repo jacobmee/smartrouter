@@ -5,8 +5,8 @@ BASH_DIR=$(cd `dirname $0`; pwd)
 
 # Define the destination
 DEST=$BASH_DIR
-SRC=$DEST/src/x86_64
-BUILD_DEST=$BASH_DIR/../lede/
+SRC=$DEST/x86_64/src/
+BUILD_DEST=$BASH_DIR/../lede
 
 echo "# Clean and setup destination: "
 echo "# ImageBuilder: "$BUILD_DEST
@@ -19,32 +19,35 @@ echo "# Copy neccessary files"
 mkdir $BUILD_DEST/files
 cp -r $SRC/* $BUILD_DEST/files/
 
-echo "# Update packages"
-#cp -r $DEST/packages/* $BUILD_DEST/packages/
+echo "# Clean and setup destination: "
+echo "# ImageBuilder: "$BUILD_DEST
+echo "# Target: "$DEST
+rm -rf $BUILD_DEST/files
+rm -rf $BUILD_DEST/bin
+#rm -rf $DEST/bin
 
-# Build the image file
-# It supports minimal set of openwrt with Shadowsocks, SFTP and NFS included.
-# With 5M spaced needed.
+echo "# Copy neccessary files"
+mkdir $BUILD_DEST/files
+cp -r $SRC/* $BUILD_DEST/files/
 
+
+echo "# Start download...."
 cd $BUILD_DEST
-
-echo "# Start to download the build files"
 make download -j5
-
-echo "# Start to build"
 make -j5 V=s
+
 
 echo "# Copy the target file into this Bin files"
 
-#mkdir bin
-#cp $BUILD_DEST/bin/targets/x86/64/**x86-64-combined* $DEST/bin/
+cp $BUILD_DEST/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.vmdk $DEST/bin/Net-Accerelator-v1.1.vmdk
 
-#echo "# Clean files"
+echo "# Clean files"
 #make clean
-
-# Go Back
 cd $DEST
 
 echo "##############################################"
 echo "#    DONE, Please check the BIN folder!      #"
 echo "##############################################"
+
+# 	tcping ipt2socks shadowsocksr-libev-alt shadowsocksr-libev-ssr-local v2ray trojan ipt2socks
+# 	chinadns-ng pdnsd-alt dns2socks v2ray-plugin simple-obfs
