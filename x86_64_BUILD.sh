@@ -23,7 +23,7 @@ make download -j5
 make -j5 V=s
 
 echo "# Copy the target file into this Bin files"
-cp $BUILD_DEST/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.vmdk $DEST/bin/NetAcceleratorII.vmdk
+cp $BUILD_DEST/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.vmdk $DEST/bin/NetAcceleratorII_Lede_x86_64.vmdk
 
 echo "# Clean files"
 #make clean
