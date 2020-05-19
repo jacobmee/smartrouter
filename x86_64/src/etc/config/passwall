@@ -3,7 +3,6 @@ config global
 	option use_tcp_node_resolve_dns '1'
 	option tcp_proxy_mode 'chnroute'
 	option udp_proxy_mode 'chnroute'
-	option enabled '1'
 	option udp_node1 'tcp'
 	option socks_node1 'tcp'
 	option localhost_tcp_proxy_mode 'chnroute'
@@ -12,7 +11,8 @@ config global
 	option up_trust_chinadns_ng_dns 'dns2socks'
 	option dns2socks_forward '8.8.4.4'
 	option up_china_dns 'dnsbyisp'
-	option tcp_node1 'cfg0d1c7e'
+	option enabled '1'
+	option tcp_node1 'cfg0a1c7e'
 
 config global_haproxy
 	option balancing_enable '1'
@@ -76,7 +76,7 @@ config auto_switch
 	option enable '0'
 
 config nodes
-	option v2ray_VMess_id '58009ac9-451f-4ba4-a88e-7b5bd0f1a641'
+	option v2ray_VMess_id 'eb2ff92c-44f4-4644-ad4b-4b786346e59a'
 	option v2ray_stream_security 'tls'
 	option v2ray_security 'auto'
 	option v2ray_transport 'ws'
@@ -93,49 +93,4 @@ config nodes
 	option v2ray_ws_path '/'
 	option remarks 'Fastladder1'
 	option v2ray_VMess_level '1'
-
-config nodes
-	option v2ray_VMess_id 'd0ada6aa-3439-4a30-b2cd-35fc605bc00a'
-	option v2ray_stream_security 'tls'
-	option v2ray_security 'auto'
-	option v2ray_transport 'ws'
-	option v2ray_VMess_alterId '233'
-	option port '443'
-	option v2ray_ws_host 'fastladder2.freeddns.org'
-	option add_mode '导入'
-	option type 'V2ray'
-	option tls_serverName 'fastladder2.freeddns.org'
-	option is_sub '0'
-	option address 'fastladder2.freeddns.org'
-	option tls_allowInsecure '1'
-	option v2ray_protocol 'vmess'
-	option v2ray_ws_path '/'
-	option remarks 'Fastladder2'
-	option v2ray_VMess_level '1'
-
-config nodes
-	option v2ray_VMess_id 'cb7c88b0-25b8-4c37-960f-d3f88551e985'
-	option v2ray_stream_security 'tls'
-	option v2ray_security 'auto'
-	option v2ray_transport 'ws'
-	option v2ray_VMess_alterId '233'
-	option port '443'
-	option v2ray_ws_host 'fastladder3.freeddns.org'
-	option add_mode '导入'
-	option type 'V2ray'
-	option tls_serverName 'fastladder3.freeddns.org'
-	option is_sub '0'
-	option address 'fastladder3.freeddns.org'
-	option tls_allowInsecure '1'
-	option v2ray_protocol 'vmess'
-	option v2ray_ws_path '/'
-	option remarks 'Fastladder3'
-	option v2ray_VMess_level '1'
-
-config nodes
-	option type 'V2ray_balancing'
-	list v2ray_balancing_node 'cfg0a1c7e'
-	list v2ray_balancing_node 'cfg0b1c7e'
-	list v2ray_balancing_node 'cfg0c1c7e'
-	option remarks 'Fastladders'
 
