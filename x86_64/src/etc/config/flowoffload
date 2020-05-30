@@ -1,6 +1,5 @@
 config flow
-        option flow_offloading '1'
-        option flow_offloading_hw '0'
-        option bbr '1'
-        option dns '1'
-        option dns_server '202.96.209.5,116.228.111.118'
+	option flow_offloading '1'
+	option flow_offloading_hw '0'
+	option bbr '1'
+	option dns '0'
