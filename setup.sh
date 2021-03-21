@@ -4,10 +4,12 @@ sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git
 
 cd ..
 git clone https://github.com/coolsnowwolf/lede
-get clone https://github.com/jacobmee/smartrouter.git
+git clone https://github.com/jacobmee/smartrouter
+
 cd lede/package
 git clone https://github.com/kenzok8/openwrt-packages
-#src-git small https://github.com/kenzok8/small
+git clone https://github.com/kenzok8/small
+
 cd ../..
 
 cd smartrouter/x86_64
