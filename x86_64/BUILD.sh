@@ -7,6 +7,7 @@ BASH_DIR=$(cd `dirname $0`; pwd)
 DEST=$BASH_DIR/..
 SRC=$BASH_DIR/src
 BUILD_DEST=$BASH_DIR/../../lede
+DATE=`date +"%Y%m%d"`
 
 echo "# Clean and setup destination: "
 echo "# ImageBuilder: "$BUILD_DEST
@@ -27,7 +28,7 @@ make download -j5
 make -j5 V=s
 
 echo "# Copy the target file into this Bin files"
-cp $BUILD_DEST/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined.vmdk $DEST/bin/NetAccelerator_Lede_x86_64.vmdk
+cp $BUILD_DEST/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.vmdk $DEST/bin/NetAccelerator_Lede_x86_64_$DATE.vmdk
 
 echo "# Clean files"
 #make clean
