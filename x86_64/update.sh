@@ -1,9 +1,14 @@
+#!/bin/bash
 BASH_DIR=$(cd `dirname $0`; pwd)
 
 # Define the destination
-DEST=$BASH_DIR
-SRC=$DEST/src/
+DEST=${BASH_DIR}
+SRC=${BASH_DIR}/src
 BUILD_DEST=$BASH_DIR/../../lede
+
+echo "current: "$DEST
+echo "source: "$SRC
+echo "build: "$BUILD_DEST
 
 echo "Pull files from github"
 cd $BUILD_DEST
